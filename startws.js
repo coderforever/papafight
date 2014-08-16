@@ -9,4 +9,7 @@ var server = app.listen(app.get('port'), function() {
 });
 
 //websocket server
-global.socket = require('socket.io').listen(app);
+global.socket = require('socket.io').listen(require('http').createServer(app));
+
+//login websocket logic
+
