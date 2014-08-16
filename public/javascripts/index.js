@@ -16,7 +16,7 @@ if(!system.win&&!system.mac&&!system.xll){//转向手机登陆页面
 
 $(function(){
 	var sserver=new SonicServer({alphabet:'0123456789'});
-	var socket=io.connect("/login");
+	var socket=io.connect(document.domain+":8080/login");
 	$("#find_phone").click(function(){
 		if($(this).hasClass("disable")){
 			return false;
