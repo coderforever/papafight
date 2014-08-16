@@ -37,4 +37,7 @@ $(function(){
 	$("#token_yes").click(function(){
 		socket.emit("post token",{token:$("#token").text()});
 	});
+	socket.on("login success",function(data){
+		console.log(data);
+	});
 });
