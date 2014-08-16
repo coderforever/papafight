@@ -33,4 +33,7 @@ $(function(){
 		$("#token_area").hide();
 		$("#find_phone").click();
 	});
+	$("#token_yes").click(function(){
+		
+	});
 });
