@@ -16,7 +16,7 @@ var system ={
 
 $(function(){
 	var sserver=new SonicServer({alphabet:'0123456789'});
-	var socket=io.connect("/login");
+	var socket=io.connect(document.domain+":8080/login");
 	$("#find_phone").click(function(){
 		if($(this).hasClass("disable")){
 			return false;
@@ -36,5 +36,8 @@ $(function(){
 	});
 	$("#token_yes").click(function(){
 		socket.emit("post token",{token:$("#token").text()});
+	});
+	socket.on("login success",function(data){
+		console.log(data);
 	});
 });

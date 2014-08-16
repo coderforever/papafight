@@ -8,8 +8,7 @@ var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
 });
 
-//websocket server
-global.socket = require('socket.io')(3100);
+global.socket = require('socket.io')(8080);
 
 //login websocket logic
 require('./service/login');
