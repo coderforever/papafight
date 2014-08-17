@@ -12,6 +12,7 @@ $(function(){
 		//令牌显示在屏幕上，以便和电脑端对比
 		$("#token").text(msg);
 		$("#token_area").show();
+		socket.emmit("post token", {'token': '121212121'});
 	});
 	//等待服务器端的通知，当收到login success，说明电脑和手机已经匹配完毕，可以进入下个页面
 	socket.on("login success",function(data){
