@@ -1,7 +1,7 @@
 module.exports = function() {     
-	global.socket.of('/login').on('connection', function(socket) { 
+	var login_socket=global.socket.of('/login').on('connection', function(socket) { 
    		socket.on('post token', function (data) {
-    		socket.emit("login success",data);
+    		login_socket.emit("login success",data);
   		});
    	});
 }();
