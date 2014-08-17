@@ -9,6 +9,6 @@ $(function(){
 		$("#token_area").show();
 	});
 	socket.on("login success",function(data){
-		$("#token").text("shoudale:"+data);
+		console.log(data);
 	});
 });
