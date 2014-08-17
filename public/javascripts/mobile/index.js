@@ -10,6 +10,6 @@ $(function(){
 		socket.emmit("post token", {'token': '121212121'});
 	});
 	socket.on("login success",function(data){
-		$("#token").text("shoudale:"+data);
+		console.log(data);
 	});
 });
