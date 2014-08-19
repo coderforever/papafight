@@ -17,5 +17,11 @@ $(function(){
 	//等待服务器端的通知，当收到login success，说明电脑和手机已经匹配完毕，可以进入下个页面
 	socket.on("login success",function(data){
 		console.log(data);
+		//可能会有其他玩家也有发送，所以要判断令牌是否相等
+		if(data["token"]==$("#token").text()){
+			//存储令牌，便于以后使用
+			var storage=new WebStorage();
+			storage.setItem("token",data["token"]);
+		}
 	});
 });
