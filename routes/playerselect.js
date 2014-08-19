@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+  res.render('playerselect');
 });
+
+router.get('/mobile', function(req, res) {
+  res.render('mobile/playerselect');
+});
+
 
 module.exports = router;

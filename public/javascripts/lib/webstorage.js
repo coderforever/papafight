@@ -29,6 +29,6 @@ Storage.prototype.setItem=function(name,value){
 	}
 	//cookie获取
 	else{
-		document.cookie=name+ "=" +escape(value)；
+		document.cookie=name+ "=" +escape(value);
 	}
 };

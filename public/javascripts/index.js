@@ -34,8 +34,9 @@ $(function(){
 		//可能会有其他玩家也有发送，所以要判断令牌是否相等
 		if(data["token"]==$("#token").text()){
 			//存储令牌，便于以后使用
-			var storage=new WebStorage();
+			var storage=new Storage();
 			storage.setItem("token",data["token"]);
+			document.location.href="playerselect";
 		}
 	});
 });
