@@ -30,13 +30,12 @@ $(function(){
 	});
 	//收到服务器端发来的登录成功消息时候，说明令牌已经确认完成，可以进入下个页面
 	socket.on("login success",function(data){
-		console.log(data);
 		//可能会有其他玩家也有发送，所以要判断令牌是否相等
 		if(data["token"]==$("#token").text()){
 			//存储令牌，便于以后使用
 			var storage=new Storage();
 			storage.setItem("token",data["token"]);
-			document.location.href="playerselect";
+			document.location.href="/playerselect";
 		}
 	});
 });
