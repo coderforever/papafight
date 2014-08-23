@@ -5,6 +5,8 @@ $(function(){
 		$("#content_1").html("<br/>alpha:"+parseInt(data.alpha)+", beta:"+parseInt(data.beta)+", gamma:"+parseInt(data.gamma));
 	});
 	socket.on("motion success",function(data){
+		console.log(data);
+		console.log($("#content_1").html());
 		$("#content_2").html("<br/>x:"+data.x+", y:"+data.y+", z:"+data.z);
 	});
 });

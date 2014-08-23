@@ -8,6 +8,7 @@ module.exports = function() {
     		orientation_socket.emit('orientation success',data);
   		});
   		socket.on('post motion', function(data){
+  			console.log(data);
    			orientation_socket.emit('motion success',data);
    		});
    	});

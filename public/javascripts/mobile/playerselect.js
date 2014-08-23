@@ -24,7 +24,7 @@ $(function(){
 		document.getElementById("z").innerHTML=z;
 		//作为进攻的话这些还不够，还要判断是否手机在平面上（beta值），否则有可能是防守！！
 		if((Math.abs(x)>8 || Math.abs(y)>8) && Math.abs(z)<8){
-			if(lastTime==null || new Date().getTime()-lastTime>1000){
+			if(lastTime==null || new Date().getTime()-lastTime>500){
 				document.getElementById("count").innerHTML=parseInt(document.getElementById("count").innerHTML)+1;
 				lastTime=new Date().getTime();
 				//发送加速度
