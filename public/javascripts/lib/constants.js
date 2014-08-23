@@ -1,0 +1,7 @@
+var ORIENTATION={};
+ORIENTATION.RIGHT="right";
+ORIENTATION.LEFT="left";
+
+var ACTION={};
+ACTION.ATTACK="attack";
+ACTION.DEFEND="defend";
