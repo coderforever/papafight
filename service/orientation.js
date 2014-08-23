@@ -8,7 +8,6 @@ module.exports = function() {
     		playerselect_socket.emit('playerselect success',data);
   		});
   		socket.on('post playerselected', function(data){
-  			console.log(data);
   			playerselect_socket.emit('playerselected success',data);
   		});
    	});

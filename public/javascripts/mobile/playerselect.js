@@ -33,8 +33,7 @@ $(function(){
 		else if(Math.abs(y)>8 && lastBeta>=0 && lastBeta<=30 && lastGamma>=0 && lastGamma<=30){
 			//动作间隔至少1000ms
 			if(lastTime==null || new Date().getTime()-lastTime>1000){
-				$("#z").append("发送了");
-				socket.emit("post playerselected",{token:token,player:$(".roundabout-in-focus img").attr("src")});
+				socket.emit("post playerselected",{token:token});
 				lastTime=new Date().getTime();
 			}
 		}
