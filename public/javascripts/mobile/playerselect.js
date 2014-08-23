@@ -1,11 +1,11 @@
+Utils.checkToken();
+
 $(function(){
 	var lastTime=null;
+	var lastGamma=0;
+	var lastBeta=0;
 	var storage=new Storage();
 	var token=storage.getItem("token");
-	//没登陆，重定向
-	if(token==null){
-		document.location.href="/mobile";
-	}
 	//建立命名空间为playerselect的socket连接
 	var socket=io.connect(document.domain+":8080/playerselect");
 	//设备加速度
@@ -16,9 +16,9 @@ $(function(){
 		$("#x").text(x);
 		$("#y").text(y);
 		$("#z").text(z);
-		//作为进攻的话这些还不够，还要判断是否手机在平面上（beta值），否则有可能是防守！！
-		if(Math.abs(z)>8){
-			//动作间隔至少500ms
+		//手机左右摆动并且手机屏幕垂直地面(gamma=90)
+		if(Math.abs(z)>8 && lastGamma>45 && lastGamma<=90){
+			//动作间隔至少1000ms
 			if(lastTime==null || new Date().getTime()-lastTime>1000){
 				var orientation=ORIENTATION.RIGHT;
 				if(z<0){
@@ -29,5 +29,19 @@ $(function(){
 				lastTime=new Date().getTime();
 			}
 		}
+		//出拳选择，屏幕向上（beta=0，gamma=0），x、y加速度
+		else if(Math.abs(y)>8 && lastBeta>=0 && lastBeta<=30 && lastGamma>=0 && lastGamma<=30){
+			//动作间隔至少1000ms
+			if(lastTime==null || new Date().getTime()-lastTime>1000){
+				$("#z").append("发送了");
+				socket.emit("post playerselected",{token:token,player:$(".roundabout-in-focus img").attr("src")});
+				lastTime=new Date().getTime();
+			}
+		}
 	},true);
+	//屏幕方向
+	window.addEventListener("deviceorientation",function(evt){
+		lastGamma=Math.abs(evt.gamma);
+		lastBeta=Math.abs(evt.beta);
+ 	},true);
 });
