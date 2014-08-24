@@ -1,8 +1,17 @@
-body{
-  background-color: #000;
-}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加载loading</title>
+</head>
+
+<body style="background:#000; ">
+
+<style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,700);
 #container {
-  width: 200px;
+  width: 180px;
   margin:0 auto;
 }
 #container h1 {
@@ -12,10 +21,8 @@ body{
   font-size: 1em;
   letter-spacing: 1.5px;
   text-align: center;
-  width: 200px;
+  width: 155px;
   margin-top: 20px;
-  margin-left: -20px;
-  text-align: center;
   -webkit-animation: fade 2s infinite;
   -moz-animation: fade 2s infinite;
 }
@@ -26,28 +33,6 @@ body{
   background: white;
   display: inline-block;
   margin-left: -8px;
-}
-.stick:nth-child(1){
-  background-color: #650104;
-}
-.stick:nth-child(2){
-  background-color: #650104;
-}
-
-.stick:nth-child(3){
-  background-color: #650104;
-}
-
-.stick:nth-child(4){
-  background-color: #650104;
-}
-
-.stick:nth-child(5){
-  background-color: #650104;
-}
-
-.stick:nth-child(6){
-  background-color: #650104;
 }
 
 .stick:nth-child(n) {
@@ -183,3 +168,22 @@ body{
     }
   }
 }
+</style>
+
+
+<!--pulse wave-->
+<div id="container">
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  <div class="stick"></div>
+  
+  <h1>Loading...</h1>
+  
+</div>
+
+
+</body>
+</html>
