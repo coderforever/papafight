@@ -35,7 +35,7 @@ $(function(){
 			//存储令牌，便于以后使用
 			var storage=new Storage();
 			storage.setItem("token",data["token"]);
-			document.location.href="/playerselect";
+			document.location.href="/preload";
 		}
 	});
 });

@@ -44,7 +44,6 @@ $(function(){
 					document.location.href="/opponentselect";
 				});
 			});
-
 		}
 	});
 });

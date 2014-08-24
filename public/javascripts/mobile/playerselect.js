@@ -34,7 +34,7 @@ $(function(){
 			//动作间隔至少1000ms
 			if(lastTime==null || new Date().getTime()-lastTime>1000){
 				socket.emit("post playerselected",{token:token});
-				lastTime=new Date().getTime();
+				document.location.href="/opponentselect/mobile";				
 			}
 		}
 	},true);

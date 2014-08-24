@@ -8,16 +8,3 @@ Utils.checkToken=function(){
 		document.location.href="/";
 	}
 }
-
-Utils.fullScreen=function(){
-	var element=document.documentElement;
-	if(element.requestFullscreen) {  
-    	element.requestFullscreen();  
-  	} 
-  	else if(element.mozRequestFullScreen) {  
-    	element.mozRequestFullScreen();  
-  	}
-  	else if(element.webkitRequestFullscreen) {  
-    	element.webkitRequestFullscreen();  
-  	}
-}
