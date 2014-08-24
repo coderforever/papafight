@@ -7,9 +7,10 @@ Utils.checkToken();
 	var COUNT = 0;
 	function init() {
 		fix();
-		loadResource();
-		Utils.playAudio("/audios/loading.wav");
-
+		$.get('/audios/loading.wav', function() {
+			Utils.playAudio('/audios/loading.wav');
+			loadResource();
+		});
 	}
 	function loadResource() {
 		var resource = [];
