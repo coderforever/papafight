@@ -17,7 +17,7 @@ $(function(){
 		$("#y").text(y);
 		$("#z").text(z);
 		//手机左右摆动并且手机屏幕垂直地面(gamma=90)
-		if(Math.abs(z)>8 && lastGamma>60 && lastGamma<=90){
+		if(Math.abs(z)>8 && (lastGamma>60 && lastGamma<=90)){
 			//动作间隔至少1000ms
 			if(lastTime==null || new Date().getTime()-lastTime>1000){
 				var orientation=ORIENTATION.RIGHT;
@@ -30,9 +30,9 @@ $(function(){
 			}
 		}
 		//出拳选择，屏幕向上（beta=0，gamma=0），x、y加速度
-		else if(Math.abs(y)>8 && lastBeta>=0 && lastBeta<=30 && lastGamma>=0 && lastGamma<=30){
+		else if((Math.abs(y)>8 && (lastBeta>=0 && lastBeta<=30)) && (lastGamma>=0 && lastGamma<=30)){
 			//动作间隔至少1000ms
-			if(lastTime==null || new Date().getTime()-lastTime>1000){
+			if(lastTime==null || new Date().getTime()-lastTime>300){
 				socket.emit("post playerselected",{token:token});
 				document.location.href="/opponentselect/mobile";				
 			}
