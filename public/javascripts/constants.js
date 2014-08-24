@@ -15,7 +15,6 @@ RESOURCE.IMAGES=[
 	"/images/role/5.png"
 ];
 RESOURCE.AUDIOS=[
-	"/audios/loading.wav",
 	"/audios/orientation.wav",
 	"/audios/playerselect.wav",
 	"/audios/selectsuccess.wav"

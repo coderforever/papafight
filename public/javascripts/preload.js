@@ -9,7 +9,6 @@ Utils.checkToken();
 	function init() {
 		fix();
 		loadResource();
-		Utils.playAudio("/audios/loading.wav");
 	}
 	function loadResource() {
 		var resource = [];
