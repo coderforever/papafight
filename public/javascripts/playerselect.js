@@ -2,7 +2,7 @@ Utils.checkToken();
 
 $(function(){
 	//音频
-	Utils.playAudio("/audios/playerselect.wav");
+	var bkAudio=Utils.playAudio("/audios/playerselect.wav",true);
 	//动画效果
 	$('#gla_box>ul').roundabout({
 		minOpacity:1,
@@ -40,6 +40,9 @@ $(function(){
 			return;
 		}
 		if(data.token==token){
+			//选中之后的音效
+			bkAudio.pause();
+			Utils.playAudio("/audios/selectsuccess.wav");
 			isSelected=true;
 			var role=$(".roundabout-in-focus img").attr("role");
 			storage.setItem("role",role);

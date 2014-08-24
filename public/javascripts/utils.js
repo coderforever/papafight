@@ -9,8 +9,12 @@ Utils.checkToken=function(){
 	}
 }
 
-Utils.playAudio=function(audioURL){
+Utils.playAudio=function(audioURL,isLoop){
 	var audio = document.createElement("audio");
 	audio.src=audioURL;
+	if(isLoop){
+		audio.loop="loop";
+	}
 	audio.play();
+	return audio;
 }
