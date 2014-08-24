@@ -42,12 +42,12 @@ $(function(){
 		if(data.token==token){
 			//选中之后的音效
 			bkAudio.pause();
-			Utils.playAudio("/audios/selectsuccess.wav");
 			isSelected=true;
 			var role=$(".roundabout-in-focus img").attr("role");
 			storage.setItem("role",role);
 			$(".roundabout-moveable-item:not(.roundabout-in-focus)").animate({"opacity":"0"},700,function(){
-				$(".roundabout-in-focus").animate({"opacity":"0"},1000,function(){
+				Utils.playAudio("/audios/selectsuccess.wav");
+				$(".roundabout-in-focus").animate({"opacity":"0"},2000,function(){
 					document.location.href="/opponentselect";
 				});
 			});

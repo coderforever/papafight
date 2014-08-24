@@ -28,26 +28,26 @@ body{
   margin-left: -8px;
 }
 .stick:nth-child(1){
-  background-color: #650104;
+  background-color: red;
 }
 .stick:nth-child(2){
-  background-color: #650104;
+  background-color: orange;
 }
 
 .stick:nth-child(3){
-  background-color: #650104;
+  background-color: yellow;
 }
 
 .stick:nth-child(4){
-  background-color: #650104;
+  background-color: green;
 }
 
 .stick:nth-child(5){
-  background-color: #650104;
+  background-color: blue;
 }
 
 .stick:nth-child(6){
-  background-color: #650104;
+  background-color: purple;
 }
 
 .stick:nth-child(n) {
