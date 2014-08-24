@@ -4,6 +4,9 @@
 
 module.exports = function() {    
 	var playerselect_socket=global.socket.of('/playerselect').on('connection', function(socket) { 
+   		socket.on('post preload', function(data){
+   			playerselect_socket.emit('preload success',data);
+   		});
    		socket.on('post playerselect', function (data) {
     		playerselect_socket.emit('playerselect success',data);
   		});

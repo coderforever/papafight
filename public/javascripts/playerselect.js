@@ -3,6 +3,7 @@ Utils.checkToken();
 $(function(){
 	//音频
 	var bkAudio=Utils.playAudio("/audios/playerselect.wav",true);
+	var orientationAudio=null;
 	//动画效果
 	$('#gla_box>ul').roundabout({
 		minOpacity:1,
@@ -26,11 +27,21 @@ $(function(){
 		if(data.token==token){
 			if(data.orientation==ORIENTATION.RIGHT){
 				$("#gla_box .next").click();
-				Utils.playAudio("/audios/orientation.wav");
+				if(orientationAudio==null){
+					orientationAudio=Utils.playAudio("/audios/orientation.wav");
+				}
+				else{
+					orientationAudio.play();
+				}
 			}
 			else if(data.orientation==ORIENTATION.LEFT){
 				$("#gla_box .prev").click();
-				Utils.playAudio("/audios/orientation.wav");
+				if(orientationAudio==null){
+					orientationAudio=Utils.playAudio("/audios/orientation.wav");
+				}
+				else{
+					orientationAudio.play();
+				}
 			}
 		}
 	});

@@ -8,8 +8,12 @@ $(function(){
 	var token=storage.getItem("token");
 	//建立命名空间为playerselect的socket连接
 	var socket=io.connect(document.domain+":8080/playerselect");
+	var canStart=false;
 	//设备加速度
 	window.addEventListener("devicemotion",function(evt){
+		if(!canStart){
+			return;
+		}
 		var x=evt.acceleration.x;
 		var y=evt.acceleration.y;
 		var z=evt.acceleration.z;
@@ -40,7 +44,16 @@ $(function(){
 	},true);
 	//屏幕方向
 	window.addEventListener("deviceorientation",function(evt){
+		if(!canStart){
+			return;
+		}
 		lastGamma=Math.abs(evt.gamma);
 		lastBeta=Math.abs(evt.beta);
  	},true);
+ 	//等待预加载完成，才能选择玩家
+ 	socket.on("preload success",function(data){
+ 		if(data["token"]==token){
+ 			canStart=true;
+ 		}
+ 	});
 });
