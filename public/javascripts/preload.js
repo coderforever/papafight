@@ -1,4 +1,4 @@
-//Utils.checkToken();
+Utils.checkToken();
 
 (function($, undefined){
 	var COUNT = 0;
@@ -7,13 +7,13 @@
 		loadResource();
 	}
 	function loadResource() {
-		var resource = [
-			'/images/role/1.png',
-			'/images/role/2.png',
-			'/images/role/3.png',
-			'/images/role/4.png',
-			'/images/role/5.png'
-		];
+		var resource = [];
+		console.log(RESOURCE.length)
+		for(var i in RESOURCE){
+			if( $.isArray(RESOURCE[i]) ){
+				resource = resource.concat(RESOURCE[i]);
+			}
+		}
 		var len = resource.length;
 		preload(resource, function(){
 			var percent = $('#percent');
