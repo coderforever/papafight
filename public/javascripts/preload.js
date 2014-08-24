@@ -8,7 +8,6 @@ Utils.checkToken();
 	}
 	function loadResource() {
 		var resource = [];
-		console.log(RESOURCE.length)
 		for(var i in RESOURCE){
 			if( $.isArray(RESOURCE[i]) ){
 				resource = resource.concat(RESOURCE[i]);
@@ -22,9 +21,11 @@ Utils.checkToken();
 			var interId = setInterval(function(){
 				if(current >= num) {
 					clearInterval(interId);
-					percent.html('(' + num + '/' + 100 + ')');
+
+					percent.html(+ num + '/' + 100);
 				}
-				percent.html('(' + current + '/' + 100 + ')');
+
+				percent.html(current + '/' + 100);
 				current++;
 			},10);
 		});
