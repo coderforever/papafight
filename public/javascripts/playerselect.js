@@ -1,6 +1,8 @@
 Utils.checkToken();
 
 $(function(){
+	//音频
+	var bkAudio=Utils.playAudio("/audios/playerselect.wav",true);
 	//动画效果
 	$('#gla_box>ul').roundabout({
 		minOpacity:1,
@@ -24,9 +26,11 @@ $(function(){
 		if(data.token==token){
 			if(data.orientation==ORIENTATION.RIGHT){
 				$("#gla_box .next").click();
+				Utils.playAudio("/audios/orientation.wav");
 			}
 			else if(data.orientation==ORIENTATION.LEFT){
 				$("#gla_box .prev").click();
+				Utils.playAudio("/audios/orientation.wav");
 			}
 		}
 	});
@@ -36,11 +40,14 @@ $(function(){
 			return;
 		}
 		if(data.token==token){
+			//选中之后的音效
+			bkAudio.pause();
 			isSelected=true;
 			var role=$(".roundabout-in-focus img").attr("role");
 			storage.setItem("role",role);
 			$(".roundabout-moveable-item:not(.roundabout-in-focus)").animate({"opacity":"0"},700,function(){
-				$(".roundabout-in-focus").animate({"opacity":"0"},1000,function(){
+				Utils.playAudio("/audios/selectsuccess.wav");
+				$(".roundabout-in-focus").animate({"opacity":"0"},2000,function(){
 					document.location.href="/opponentselect";
 				});
 			});

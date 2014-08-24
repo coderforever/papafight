@@ -8,3 +8,13 @@ Utils.checkToken=function(){
 		document.location.href="/";
 	}
 }
+
+Utils.playAudio=function(audioURL,isLoop){
+	var audio = document.createElement("audio");
+	audio.src=audioURL;
+	if(isLoop){
+		audio.loop="loop";
+	}
+	audio.play();
+	return audio;
+}
