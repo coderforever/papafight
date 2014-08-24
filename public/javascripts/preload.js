@@ -1,5 +1,9 @@
 Utils.checkToken();
 (function($, undefined){
+	//建立命名空间为playerselect的socket连接
+	var socket=io.connect(document.domain+":8080/playerselect");
+	var storage=new Storage();
+	var token=storage.getItem("token");
 	var COUNT = 0;
 	function init() {
 		fix();
@@ -22,11 +26,15 @@ Utils.checkToken();
 			var interId = setInterval(function(){
 				if(current >= num) {
 					clearInterval(interId);
-
 					percent.html(+ num + '/' + 100);
 				}
-
 				percent.html(current + '/' + 100);
+				if(current==100){
+					setTimeout(function(){
+						socket.emit("post preload",{token:token});
+						document.location.href="/playerselect";
+					},3000);
+				}
 				current++;
 			},10);
 		});
@@ -46,7 +54,7 @@ Utils.checkToken();
 			$.get(arr[i], function(){
 				COUNT++;
 				callback();
-			})
+			});
 		}
 	}
 	$(init);
