@@ -1,11 +1,11 @@
 Utils.checkToken();
-
 (function($, undefined){
 	var COUNT = 0;
 	function init() {
 		fix();
 		loadResource();
 		Utils.playAudio("/audios/loading.wav");
+
 	}
 	function loadResource() {
 		var resource = [];
