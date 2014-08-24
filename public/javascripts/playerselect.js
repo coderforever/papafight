@@ -1,6 +1,8 @@
 Utils.checkToken();
 
 $(function(){
+	//音频
+	Utils.playAudio("/audios/playerselect.wav");
 	//动画效果
 	$('#gla_box>ul').roundabout({
 		minOpacity:1,
@@ -24,9 +26,11 @@ $(function(){
 		if(data.token==token){
 			if(data.orientation==ORIENTATION.RIGHT){
 				$("#gla_box .next").click();
+				Utils.playAudio("/audios/orientation.wav");
 			}
 			else if(data.orientation==ORIENTATION.LEFT){
 				$("#gla_box .prev").click();
+				Utils.playAudio("/audios/orientation.wav");
 			}
 		}
 	});
