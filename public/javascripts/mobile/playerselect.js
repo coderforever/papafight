@@ -30,7 +30,7 @@ $(function(){
 			if(z<0){
 				orientation=ORIENTATION.LEFT;
 			}
-			lastTime=new Date().getTime();
+			lastTime=new Date().getTime()+500;
 			//发送加速度
 			socket.emit("post playerselect",{token:token,orientation:orientation});
 		}
