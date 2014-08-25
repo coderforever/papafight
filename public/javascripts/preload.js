@@ -7,7 +7,7 @@ Utils.checkToken();
 	var COUNT = 0;
 	function init() {
 		fix();
-		$.get('/audios/loading.wav', function() {
+		$.get('/audios/loading.wav').done(function() {
 			Utils.playAudio('/audios/loading.wav');
 			loadResource();
 		});
@@ -52,7 +52,7 @@ Utils.checkToken();
 		}
 		var len = arr.length;
 		for(var i = 0; i < len; i++) {
-			$.get(arr[i], function(){
+			$.get(arr[i]).done(function() {
 				COUNT++;
 				callback();
 			});
