@@ -31,10 +31,10 @@ Utils.checkToken();
 				}
 				percent.html(current + '/' + 100);
 				if(current==100){
-					setTimeout(function(){
-						socket.emit("post preload",{token:token});
-						document.location.href="/playerselect";
-					},3000);
+					// setTimeout(function(){
+					// 	socket.emit("post preload",{token:token});
+					// 	document.location.href="/playerselect";
+					// },3000);
 				}
 				current++;
 			},10);
