@@ -7,10 +7,7 @@ Utils.checkToken();
 	var COUNT = 0;
 	function init() {
 		fix();
-		$.get('/audios/loading.wav').done(function() {
-			Utils.playAudio('/audios/loading.wav');
-			loadResource();
-		});
+		loadResource();
 	}
 	function loadResource() {
 		var resource = [];
@@ -31,10 +28,10 @@ Utils.checkToken();
 				}
 				percent.html(current + '/' + 100);
 				if(current==100){
-					// setTimeout(function(){
-					// 	socket.emit("post preload",{token:token});
-					// 	document.location.href="/playerselect";
-					// },3000);
+					setTimeout(function(){
+						socket.emit("post preload",{token:token});
+						document.location.href="/playerselect";
+					},3000);
 				}
 				current++;
 			},10);

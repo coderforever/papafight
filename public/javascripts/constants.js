@@ -17,5 +17,6 @@ RESOURCE.IMAGES=[
 RESOURCE.AUDIOS=[
 	"/audios/orientation.wav",
 	"/audios/playerselect.wav",
-	"/audios/selectsuccess.wav"
+	"/audios/selectsuccess.wav",
+	"/audios/loading.wav"
 ];
