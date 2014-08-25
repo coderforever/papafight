@@ -1,2 +1,50 @@
 @import url(reset.css);
 body{background:black;}
+.wait-wrapper{
+	width: 1000px;
+	height: 600px;
+	margin: 50px auto;
+}
+.wait-wrapper .player-one{
+	width: 400px;
+	height: 400px;
+	float: left;
+}
+.wait-wrapper .vs{
+	float: left;
+	width: 200px;
+	height: 400px;
+	line-height: 400px;
+	font-size: 80px;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 0 10px #fff,
+                   0 0 20px #fff,
+                   0 0 30px #fff,
+                   0 0 40px #ff00de,
+                   0 0 70px #ff00de,
+                   0 0 80px #ff00de,
+                   0 0 100px #ff00de,
+                   0 0 150px #ff00de;
+}
+.wait-wrapper .player-one img,
+.wait-wrapper .player-wait img{
+	width: 400px;
+	height: 400px;
+	box-shadow: 0 0 50px #fff;
+	border-radius: 20px;
+}
+.wait-wrapper .player-wait{
+	width: 400px;
+	height: 400px;
+	float: right;
+}
+.wait-wrapper p {
+	margin-top:20px;
+	width: 400px;
+	height: 40px;
+	text-align: center;
+	color: #fff;
+	font-size:30px;
+}
+
