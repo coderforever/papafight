@@ -2,7 +2,6 @@
 body{background:black;}
 .wait-wrapper{
 	width: 1000px;
-	height: 600px;
 	margin: 50px auto;
 }
 .wait-wrapper .player-one{
@@ -16,6 +15,7 @@ body{background:black;}
 	height: 400px;
 	line-height: 400px;
 	font-size: 80px;
+	font-weight:bold;
 	color: #fff;
 	text-align: center;
 	text-shadow: 0 0 10px #fff,
@@ -46,5 +46,8 @@ body{background:black;}
 	text-align: center;
 	color: #fff;
 	font-size:30px;
+}
+#another_player{
+	display:none;
 }
 

@@ -8,6 +8,7 @@ ACTION.DEFEND="defend";
 
 var RESOURCE={};
 RESOURCE.IMAGES=[
+	"/images/role/0.png",
 	"/images/role/1.png",
 	"/images/role/2.png",
 	"/images/role/3.png",
