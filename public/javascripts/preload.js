@@ -27,7 +27,7 @@ Utils.checkToken();
 					percent.html(+ num + '/' + 100);
 				}
 				percent.html(current + '/' + 100);
-				if(current==100){
+				if(current >= 100){
 					setTimeout(function(){
 						socket.emit("post preload",{token:token});
 						document.location.href="/playerselect";
