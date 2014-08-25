@@ -37,7 +37,7 @@ $(function(){
 		//出拳选择，屏幕向上（beta=0，gamma=0），x、y加速度
 		else if((Math.abs(y)>8 && (lastBeta>=0 && lastBeta<=30)) && (lastGamma>=0 && lastGamma<=30)){
 			socket.emit("post playerselected",{token:token});
-			document.location.href="/opponentselect/mobile";				
+			document.location.href="/waitplayer/mobile";				
 		}
 	},true);
 	//屏幕方向

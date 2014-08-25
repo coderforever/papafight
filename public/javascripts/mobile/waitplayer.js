@@ -1,0 +1,5 @@
+Utils.checkToken();
+
+$(function(){
+	
+});

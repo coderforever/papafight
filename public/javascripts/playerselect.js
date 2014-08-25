@@ -59,7 +59,7 @@ $(function(){
 			$(".roundabout-moveable-item:not(.roundabout-in-focus)").animate({"opacity":"0"},700,function(){
 				Utils.playAudio("/audios/selectsuccess.wav");
 				$(".roundabout-in-focus").animate({"opacity":"0"},2000,function(){
-					document.location.href="/opponentselect";
+					document.location.href="/waitplayer";
 				});
 			});
 		}
