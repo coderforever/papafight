@@ -26,19 +26,17 @@ $(function(){
 		var compare1=lastZ_1>=0;
 		var compare2=lastZ_2>=0;
 		if(compare1!=compare2){
+			isAsc=true;
 			return;
 		}
 		if(!isAsc){
-			if(Math.abs(z)>Math.abs(lastZ_1)){
-				isAsc=true;
-			}
 			return;
 		}
 		//手机左右摆动并且手机屏幕垂直地面(gamma=90)
-		if(Math.abs(lastZ_1)>8 && (lastGamma>60 && lastGamma<=90)){
+		if(Math.abs(lastZ_1)>7 && (lastGamma>60 && lastGamma<=90)){
 			if(Math.abs(z)<Math.abs(lastZ_1)){
 				var orientation=ORIENTATION.RIGHT;
-				if(z<0){
+				if(lastZ_1<0){
 					orientation=ORIENTATION.LEFT;
 				}
 				isAsc=false;				

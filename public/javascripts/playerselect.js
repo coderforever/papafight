@@ -24,6 +24,7 @@ $(function(){
 		if(isSelected){
 			return;
 		}
+		console.log(data);
 		if(data.token==token){
 			if(data.orientation==ORIENTATION.RIGHT){
 				$("#gla_box .next").click();
