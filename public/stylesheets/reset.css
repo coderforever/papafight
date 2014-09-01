@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
     line-height: 1;
     font-family:"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑;
+    overflow:hidden;
 }
 ol, ul {
     list-style: none;
