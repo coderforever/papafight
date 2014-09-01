@@ -89,7 +89,7 @@ Utils.checkToken();
 		var h = $(document).height(),
 			ele = $('#gla_box');
 		ele.css({
-			top: (h - ele.height())/2
+			top: (h - ele.height())/2.5
 		});
 	}
 	$(init);
