@@ -7,3 +7,7 @@ body{background:black;}
 .roundabout-holder{margin:0px auto; height:600px;width:900px;}
 .roundabout-moveable-item{display:block;height:600px;width:600px;cursor:pointer;}
 .roundabout-in-focus{cursor:auto;}
+#bg-img{
+	position: relative;
+	z-index: -9;
+}
