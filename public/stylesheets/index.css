@@ -1,4 +1,19 @@
 @import url(reset.css);
-body{}
+body.init{
+	background-color: #ebedf0;
+}
+body.wrapper{
+	background: #000 url('../images/bg.jpg') center center no-repeat;
+}
 #token_area{display:none;}
 a.disable{color:red;cursor:default;}
+.beat-wrapper{
+	position: relative;
+	width: 300px;
+	height: 400px;
+	left: 50%;
+	margin-left: -150px;
+}
+.papa-wrapper{
+	display: none;
+}
