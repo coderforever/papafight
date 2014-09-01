@@ -8,6 +8,8 @@ body{background:black;}
 .roundabout-moveable-item{display:block;height:600px;width:600px;cursor:pointer;}
 .roundabout-in-focus{cursor:auto;}
 #bg-img{
-	position: relative;
+	position: fixed;
 	z-index: -9;
+	left: 0px;
+	top: 0px;
 }

@@ -76,7 +76,7 @@ Utils.checkToken();
 			sW = window.screen.width;
 		$('#bg-img').find('img').css({
 			width: sW,
-			height: Sh
+			height: sH
 		});
 	}
 	$(init);
