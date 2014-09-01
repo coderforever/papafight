@@ -60,7 +60,7 @@
 					$('.papa-wrapper').show();
 					$('body').addClass('wrapper').removeClass('init');
 				});
-			}, 3000);
+			}, 1500);
 		}
 	}
 
