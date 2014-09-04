@@ -15,7 +15,7 @@ $(function(){
 			return;
 		}
 		//动作间隔至少300ms
-		if(lastTime!=null && new Date().getTime()-lastTime<500){
+		if(lastTime!=null && new Date().getTime()-lastTime<100){
 			return;
 		}
 		var x=evt.acceleration.x;
@@ -30,7 +30,7 @@ $(function(){
 			if(z<0){
 				orientation=ORIENTATION.LEFT;
 			}
-			lastTime=new Date().getTime()+500;
+			lastTime=new Date().getTime()+100;
 			//发送加速度
 			socket.emit("post playerselect",{token:token,orientation:orientation});
 		}

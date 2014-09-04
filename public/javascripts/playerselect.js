@@ -3,6 +3,11 @@ Utils.checkToken();
 	function init() {
 		initAudio();
 		initBg();
+		initPhotos();
+		window.onresize=function(){  
+        	initBg();  
+        	initPhotos();
+        };
 	}
 	function initAudio() {
 		//音频
@@ -72,11 +77,19 @@ Utils.checkToken();
 	}
 
 	function initBg() {
-		var sH = window.screen.height,
-			sW = window.screen.width;
+		var sH = $(document).height(),
+			sW = $(document).width();
 		$('#bg-img').find('img').css({
 			width: sW,
 			height: sH
+		});
+	}
+
+	function initPhotos(){
+		var h = $(document).height(),
+			ele = $('#gla_box');
+		ele.css({
+			top: (h - ele.height())/2.5
 		});
 	}
 	$(init);

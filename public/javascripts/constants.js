@@ -13,7 +13,8 @@ RESOURCE.IMAGES=[
 	"/images/role/2.png",
 	"/images/role/3.png",
 	"/images/role/4.png",
-	"/images/role/5.png"
+	"/images/role/5.png",
+	"/images/playerselect-bg.jpg"
 ];
 RESOURCE.AUDIOS=[
 	"/audios/orientation.wav",
