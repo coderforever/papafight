@@ -3,9 +3,77 @@ body.init{
 	background-color: #ebedf0;
 }
 body.wrapper{
-	background: #000 url('../images/bg.jpg') center center no-repeat;
+	background: #191215  url('../images/bg.jpg') center center no-repeat;
 }
-#token_area{display:none;}
+.papa-wrapper{
+	display: none;
+	width: 900px;
+	height: 560px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+.papa-wrapper h1{
+	width: 500px;
+	height: 40px;
+	margin: 0 auto;
+	background: url('../images/sprites.png') no-repeat 0px 0px;
+	overflow: hidden;
+	text-indent: -9999px;
+
+}
+.papa-wrapper .logo{
+	width: 400px;
+	height: 260px;
+	margin: 55px auto 0;
+	background: url('../images/sprites.png') no-repeat 0px -120px;
+	overflow: hidden;
+}
+.papa-wrapper #find_phone{
+	display: block;
+	width: 196px;
+	height: 60px;
+	margin: 100px auto 0;
+	background: url('../images/sprites.png') no-repeat 12px -650px;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+.papa-wrapper #token_area{
+	display:none;
+	width: 400px;
+	height: 160px;
+	margin: 0 auto;
+}
+.papa-wrapper .token{
+	font-size: 12px;
+	height: 60px;
+	margin-top: 20px;
+	text-align: center;
+	color: #e2bb3c;
+	-webkit-text-stroke: .4px #b35607;
+}
+.papa-wrapper .action{
+	width: 420px;
+	margin: 20px auto 0;
+	height: 60px;
+}
+.papa-wrapper .action #token_yes{
+	display: block;
+	width: 196px;
+	height: 60px;
+	float: left;
+	background: url('../images/sprites.png') no-repeat 12px -410px;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+.papa-wrapper .action #token_no{
+	display: block;
+	width: 196px;
+	height: 60px;
+	float: right;
+	background: url('../images/sprites.png') no-repeat 12px -530px;
+	overflow: hidden;
+	text-indent: -9999px;
+}
 a.disable{color:red;cursor:default;}
 .beat-wrapper{
 	position: relative;
@@ -13,7 +81,4 @@ a.disable{color:red;cursor:default;}
 	height: 400px;
 	left: 50%;
 	margin-left: -150px;
-}
-.papa-wrapper{
-	display: none;
 }
