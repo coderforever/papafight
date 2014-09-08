@@ -1,5 +1,5 @@
 body{
-  background-color: #000;
+  background: #191215  url('../images/bg.jpg') center center no-repeat;
 }
 #container {
   width: 200px;

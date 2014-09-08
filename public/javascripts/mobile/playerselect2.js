@@ -33,7 +33,7 @@ $(function(){
 			return;
 		}
 		//手机左右摆动并且手机屏幕垂直地面(gamma=90)
-		if(Math.abs(lastZ_1)>7 && (lastGamma>60 && lastGamma<=90)){
+		if(Math.abs(lastZ_1)>8 && (lastGamma>60 && lastGamma<=90)){
 			if(Math.abs(z)<Math.abs(lastZ_1)){
 				var orientation=ORIENTATION.RIGHT;
 				if(lastZ_1<0){
@@ -42,6 +42,10 @@ $(function(){
 				isAsc=false;				
 				//发送加速度
 				socket.emit("post playerselect",{token:token,orientation:orientation});
+				canStart=false;
+				setTimeout(function(){
+					canStart=true;
+				},800);
 			}
 			
 		}

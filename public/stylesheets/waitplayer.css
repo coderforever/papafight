@@ -1,6 +1,6 @@
 @import url(reset.css);
-body{background:black;}
-.wait-wrapper{
+body.wait-wrapper{
+	background: #191215  url('../images/bg.jpg') center center no-repeat;
 	width: 1000px;
 	margin: 80px auto;
 }
