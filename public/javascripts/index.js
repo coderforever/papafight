@@ -18,7 +18,7 @@
 			//收到手机发来的超声波事件的回调
 			sserver.on("message",function(message){
 				$("#token").text(message);
-				$("#find_phone").removeClass("disable");
+				$("#find_phone").hide();
 				$("#token_area").show();
 			});
 			//超声波服务开启
@@ -26,9 +26,7 @@
 		});
 		//重新匹配手机，超声波重启
 		$("#token_no").click(function(){
-			sserver.stop();
-			$("#token_area").hide();
-			$("#find_phone").click();
+			document.location.reload();
 		});
 		//匹配成功，向websocket服务器端发送令牌
 		$("#token_yes").click(function(){

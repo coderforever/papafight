@@ -1,15 +1,3 @@
-;(function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require=="function"&&require;if(!s&&o)return o(n,!0);if(r)return r(n,!0);throw new Error("Cannot find module '"+n+"'")}var u=t[n]={exports:{}};e[n][0].call(u.exports,function(t){var r=e[n][1][t];return i(r?r:t)},u,u.exports)}return t[n].exports}var r=typeof require=="function"&&require;for(var s=0;s<n.length;s++)i(n[s]);return i})({1:[function(require,module,exports){
-SonicSocket = require('./sonic-socket.js');
-SonicServer = require('./sonic-server.js');
-SonicCoder = require('./sonic-coder.js');
-
-module.exports = {
-  SonicSocket: SonicSocket,
-  SonicServer: SonicServer,
-  SonicCoder: SonicCoder
-}
-
-},{"./sonic-coder.js":3,"./sonic-server.js":4,"./sonic-socket.js":5}],2:[function(require,module,exports){
 function RingBuffer(maxLength) {
   this.array = [];
   this.maxLength = maxLength;
@@ -58,9 +46,6 @@ RingBuffer.prototype.remove = function(index, length) {
   this.array.splice(index, length);
 };
 
-module.exports = RingBuffer;
-
-},{}],3:[function(require,module,exports){
 /**
  * A simple sonic encoder/decoder for [a-z0-9] => frequency (and back).
  * A way of representing characters with frequency.
@@ -72,11 +57,11 @@ function SonicCoder(params) {
   this.freqMin = params.freqMin || 18500;
   this.freqMax = params.freqMax || 19500;
   this.freqError = params.freqError || 50;
-  var alphabetString = params.alphabet || ALPHABET;
+  this.alphabetString = params.alphabet || ALPHABET;
   this.startChar = params.startChar || '^';
   this.endChar = params.endChar || '$';
   // Make sure that the alphabet has the start and end chars.
-  this.alphabet = this.startChar + alphabetString + this.endChar;
+  this.alphabet = this.startChar + this.alphabetString + this.endChar;
 }
 
 /**
@@ -121,12 +106,6 @@ SonicCoder.prototype.freqToChar = function(freq) {
   return this.alphabet[index];
 };
 
-module.exports = SonicCoder;
-
-},{}],4:[function(require,module,exports){
-(function(){var RingBuffer = require('./ring-buffer.js');
-var SonicCoder = require('./sonic-coder.js');
-
 var audioContext = window.audioContext || new webkitAudioContext();
 /**
  * Extracts meaning from audio streams.
@@ -142,9 +121,11 @@ var audioContext = window.audioContext || new webkitAudioContext();
 function SonicServer(params) {
   params = params || {};
   this.peakThreshold = params.peakThreshold || -65;
-  this.debug = !!params.debug;
   this.minRunLength = params.minRunLength || 2;
-  this.coder = params.coder || new SonicCoder({alphabet: params.alphabet});
+  this.coder = params.coder || new SonicCoder(params);
+  // How long (in ms) to wait for the next character.
+  this.timeout = params.timeout || 300;
+  this.debug = !!params.debug;
 
   this.peakHistory = new RingBuffer(16);
   this.peakTimes = new RingBuffer(16);
@@ -154,6 +135,7 @@ function SonicServer(params) {
   this.buffer = '';
   this.state = State.IDLE;
   this.isRunning = false;
+  this.iteration = 0;
 }
 
 var State = {
@@ -166,7 +148,10 @@ var State = {
  */
 SonicServer.prototype.start = function() {
   // Start listening for microphone. Continue init in onStream.
-  navigator.webkitGetUserMedia({audio: true},
+  var constraints = {
+    audio: { optional: [{ echoCancellation: false }] }
+  };
+  navigator.webkitGetUserMedia(constraints,
       this.onStream_.bind(this), this.onStreamError_.bind(this));
 };
 
@@ -210,7 +195,7 @@ SonicServer.prototype.onStream_ = function(stream) {
   this.analyser = analyser;
   this.isRunning = true;
   // Do an FFT and check for inaudible peaks.
-  requestAnimationFrame(this.loop.bind(this));
+  this.raf_(this.loop.bind(this));
 };
 
 SonicServer.prototype.onStreamError_ = function(e) {
@@ -243,12 +228,31 @@ SonicServer.prototype.getPeakFrequency = function() {
 
 SonicServer.prototype.loop = function() {
   this.analyser.getFloatFrequencyData(this.freqs);
+  // Sanity check the peaks every 5 seconds.
+  if ((this.iteration + 1) % (60 * 5) == 0) {
+    this.restartServerIfSanityCheckFails();
+  }
   // Calculate peaks, and add them to history.
   var freq = this.getPeakFrequency();
   if (freq) {
     var char = this.coder.freqToChar(freq);
+    // DEBUG ONLY: Output the transcribed char.
+    if (this.debug) {
+      console.log('Transcribed char: ' + char);
+    }
     this.peakHistory.add(char);
     this.peakTimes.add(new Date());
+  } else {
+    // If no character was detected, see if we've timed out.
+    var lastPeakTime = this.peakTimes.last();
+    if (lastPeakTime && new Date() - lastPeakTime > this.timeout) {
+      // Last detection was over 300ms ago.
+      this.state = State.IDLE;
+      if (this.debug) {
+        console.log('Token', this.buffer, 'timed out');
+      }
+      this.peakTimes.clear();
+    }
   }
   // Analyse the peak history.
   this.analysePeaks();
@@ -257,8 +261,9 @@ SonicServer.prototype.loop = function() {
     this.debugDraw_();
   }
   if (this.isRunning) {
-    requestAnimationFrame(this.loop.bind(this));
+    this.raf_(this.loop.bind(this));
   }
+  this.iteration += 1;
 };
 
 SonicServer.prototype.indexToFreq = function(index) {
@@ -346,14 +351,46 @@ SonicServer.prototype.debugDraw_ = function() {
   }
 };
 
+/**
+ * A request animation frame shortcut. This one is intended to work even in
+ * background pages of an extension.
+ */
+SonicServer.prototype.raf_ = function(callback) {
+  var isCrx = !!(window.chrome && chrome.extension);
+  if (isCrx) {
+    setTimeout(callback, 1000/60);
+  } else {
+    requestAnimationFrame(callback);
+  }
+};
 
-module.exports = SonicServer;
+SonicServer.prototype.restartServerIfSanityCheckFails = function() {
+  // Strange state 1: peaks gradually get quieter and quieter until they
+  // stabilize around -800.
+  if (this.freqs[0] < -300) {
+    console.error('freqs[0] < -300. Restarting.');
+    this.restart();
+    return;
+  }
+  // Strange state 2: all of the peaks are -100. Check just the first few.
+  var isValid = true;
+  for (var i = 0; i < 10; i++) {
+    if (this.freqs[i] == -100) {
+      isValid = false;
+    }
+  }
+  if (!isValid) {
+    console.error('freqs[0:10] == -100. Restarting.');
+    this.restart();
+  }
+}
 
-})()
-},{"./ring-buffer.js":2,"./sonic-coder.js":3}],5:[function(require,module,exports){
-var SonicCoder = require('./sonic-coder.js');
+SonicServer.prototype.restart = function() {
+  //this.stop();
+  //this.start();
+  window.location.reload();
+};
 
-var audioContext = window.audioContext || new webkitAudioContext();
 
 /**
  * Encodes text as audio streams.
@@ -367,28 +404,45 @@ function SonicSocket(params) {
   params = params || {};
   this.coder = params.coder || new SonicCoder();
   this.charDuration = params.charDuration || 0.2;
-  this.coder = params.coder || new SonicCoder({alphabet: params.alphabet});
+  this.coder = params.coder || new SonicCoder(params);
+  this.rampDuration = params.rampDuration || 0.001;
 }
 
 
-SonicSocket.prototype.send = function(input) {
+SonicSocket.prototype.send = function(input, opt_callback) {
   // Surround the word with start and end characters.
   input = this.coder.startChar + input + this.coder.endChar;
-  var osc = audioContext.createOscillator();
-  osc.connect(audioContext.destination);
-  osc.start(0);
   // Use WAAPI to schedule the frequencies.
   for (var i = 0; i < input.length; i++) {
     var char = input[i];
     var freq = this.coder.charToFreq(char);
     var time = audioContext.currentTime + this.charDuration * i;
-    osc.frequency.setValueAtTime(freq, time);
+    this.scheduleToneAt(freq, time, this.charDuration);
   }
-  var stopTime = audioContext.currentTime + this.charDuration * input.length;
-  osc.stop(stopTime);
+
+  // If specified, callback after roughly the amount of time it would have
+  // taken to transmit the token.
+  if (opt_callback) {
+    var totalTime = this.charDuration * input.length;
+    setTimeout(opt_callback, totalTime * 1000);
+  }
 };
 
-module.exports = SonicSocket;
+SonicSocket.prototype.scheduleToneAt = function(freq, startTime, duration) {
+  var gainNode = audioContext.createGain();
+  // Gain => Merger
+  gainNode.gain.value = 0;
 
-},{"./sonic-coder.js":3}]},{},[1])
-;
+  gainNode.gain.setValueAtTime(0, startTime);
+  gainNode.gain.linearRampToValueAtTime(1, startTime + this.rampDuration);
+  gainNode.gain.setValueAtTime(1, startTime + duration - this.rampDuration);
+  gainNode.gain.linearRampToValueAtTime(0, startTime + duration);
+
+  gainNode.connect(audioContext.destination);
+
+  var osc = audioContext.createOscillator();
+  osc.frequency.value = freq;
+  osc.connect(gainNode);
+
+  osc.start(startTime);
+};
