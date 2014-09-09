@@ -1,12 +1,10 @@
-Utils.checkToken();
+// Utils.checkToken();
 (function($, undefined){
 	function init() {
 		initAudio();
 		initBg();
-		initPhotos();
 		window.onresize=function(){  
         	initBg();  
-        	initPhotos();
         };
 	}
 	function initAudio() {
@@ -82,14 +80,6 @@ Utils.checkToken();
 		$('#bg-img').find('img').css({
 			width: sW,
 			height: sH
-		});
-	}
-
-	function initPhotos(){
-		var h = $(document).height(),
-			ele = $('#gla_box');
-		ele.css({
-			top: (h - ele.height())/2.5
 		});
 	}
 	$(init);
