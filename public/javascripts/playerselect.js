@@ -1,4 +1,5 @@
-// Utils.checkToken();
+Utils.checkToken();
+
 (function($, undefined){
 	function init() {
 		initAudio();
