@@ -1,6 +1,6 @@
 @import url(reset.css);
 body{background:black;}
-#gla_box{width:700px;height:300px;margin-left:auto;margin-right:auto;position:relative;}
+#gla_box{width:700px;height:300px;margin-left:auto;margin-right:auto;position:relative;top:70px;}
 #gla_box .prev,#gla_box .next{display:none;} 
 .gla_inbox{overflow:hidden;position:relative;-moz-border-radius:20px;-webkit-border-radius:20px;border-radius:20px;}
 .gla_inbox img{width:100%;height:100%;}
