@@ -5,6 +5,7 @@ Utils.checkToken();
 	var storage=new Storage();
 	var token=storage.getItem("token");
 	var COUNT = 0;
+	var current = 0;
 	function init() {
 		fix();
 		loadResource();
@@ -18,15 +19,16 @@ Utils.checkToken();
 		}
 		var len = resource.length;
 		preload(resource, function(){
-			var percent = $('#percent');
-			var current = percent.html().split('/').shift() || 0;
+			var progress = $('p.progress');
 			var num = Math.ceil(COUNT/len*100);
 			var interId = setInterval(function(){
 				if(current >= num) {
 					clearInterval(interId);
-					percent.html(+ num + '/' + 100);
+					current = num;
+					progress.css('width', '100%');
 				}
-				percent.html(current + '/' + 100);
+				console.log(current)
+				progress.css('width', current + '%');
 				if(current >= 100){
 					setTimeout(function(){
 						socket.emit("post preload",{token:token});
@@ -40,7 +42,7 @@ Utils.checkToken();
 	function fix(){
 		var height = $(window).height();
 		$('#container').css({
-			'margin-top': height/2 - 30
+			'margin-top': height/2 - 100
 		});
 	}
 	function preload(arr, callback) {

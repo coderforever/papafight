@@ -14,11 +14,12 @@
 			if($(this).hasClass("disable")){
 				return false;
 			}
-			$(this).addClass("disable");
+			$(this).remove();
+			$('div.binding').show();
 			//收到手机发来的超声波事件的回调
 			sserver.on("message",function(message){
 				$("#token").text(message);
-				$("#find_phone").hide();
+				$("div.binding").hide();
 				$("#token_area").show();
 			});
 			//超声波服务开启

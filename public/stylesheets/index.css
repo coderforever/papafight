@@ -44,7 +44,7 @@ body.wrapper{
 	margin: 0 auto;
 }
 .papa-wrapper .token{
-	font-size: 12px;
+	font-size: 16px;
 	height: 60px;
 	margin-top: 20px;
 	text-align: center;
@@ -74,7 +74,6 @@ body.wrapper{
 	overflow: hidden;
 	text-indent: -9999px;
 }
-a.disable{color:red;cursor:default;}
 .beat-wrapper{
 	position: relative;
 	width: 300px;
@@ -82,3 +81,11 @@ a.disable{color:red;cursor:default;}
 	left: 50%;
 	margin-left: -150px;
 }
+.binding{
+	display: none;
+	width: 114px;
+    height: 60px;
+    margin: 82px auto 0;
+    background: url('../images/progress.png') no-repeat 0 -294px;
+}
+
