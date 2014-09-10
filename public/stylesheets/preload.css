@@ -8,16 +8,15 @@ body{
 }
 .bar-frame{
     background: url('../images/progress.png') no-repeat 0 0;
-    width: 703px;
+    width: 704px;
     height: 19px;
-    padding: 10px 18px 19px 10px;
+    padding: 10px 18px 19px 9px;
 }
 .progress{
     height: 25px;
-    width: 100%;
+    background: url('../images/progress.png') no-repeat 0 -123px;
     margin-top: -3px;
     border-radius: 10px;
-    background-color: orange;
     position: relative;
     overflow-x: hidden;
     z-index: 9;

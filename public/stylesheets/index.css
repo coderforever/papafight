@@ -30,16 +30,19 @@ body.wrapper{
 }
 .papa-wrapper #find_phone{
 	display: block;
-	width: 196px;
-	height: 60px;
+	width: 254px;
+	height: 76px;
 	margin: 100px auto 0;
-	background: url('../images/sprites.png') no-repeat 12px -650px;
+	background: url('../images/button.png') no-repeat 0px 9px;
 	overflow: hidden;
 	text-indent: -9999px;
 }
+.papa-wrapper #find_phone:hover{
+	background-position: 0 -111px;
+}
 .papa-wrapper #token_area{
 	display:none;
-	width: 400px;
+	width: 600px;
 	height: 160px;
 	margin: 0 auto;
 }
@@ -52,27 +55,33 @@ body.wrapper{
 	-webkit-text-stroke: .4px #b35607;
 }
 .papa-wrapper .action{
-	width: 420px;
+	width: 600px;
 	margin: 20px auto 0;
 	height: 60px;
 }
 .papa-wrapper .action #token_yes{
 	display: block;
-	width: 196px;
-	height: 60px;
+	width: 254px;
+	height: 76px;
 	float: left;
-	background: url('../images/sprites.png') no-repeat 12px -410px;
+	background: url('../images/button.png') no-repeat 0px -231px;
 	overflow: hidden;
 	text-indent: -9999px;
 }
+.papa-wrapper .action #token_yes:hover{
+	background-position: 0 -351px;
+}
 .papa-wrapper .action #token_no{
 	display: block;
-	width: 196px;
-	height: 60px;
+	width: 254px;
+	height: 76px;
 	float: right;
-	background: url('../images/sprites.png') no-repeat 12px -530px;
+	background: url('../images/button.png') no-repeat 0px -471px;
 	overflow: hidden;
 	text-indent: -9999px;
+}
+.papa-wrapper .action #token_no:hover{
+	background-position: 0 -591px;
 }
 .beat-wrapper{
 	position: relative;
