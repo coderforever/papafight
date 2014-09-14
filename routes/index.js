@@ -8,7 +8,8 @@ router.get('/', function(req, res) {
     if (browser.isMobile()) {
         res.redirect('/mobile');
     }
-    res.render('index');
+    // res.render('index');
+    res.render('test');
 });
 
 router.get('/mobile', function(req, res) {
