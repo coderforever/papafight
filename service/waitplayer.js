@@ -16,7 +16,9 @@ module.exports = function() {
     			var opponent=players.pop();
     			var anotherToken=opponent.token;
     			var anotherRole=opponent.role;
-    			wait_socket.emit('wait success',{token1:token,token2:anotherToken,role1:role,role2:anotherRole});
+          if(anotherToken!=token){
+            wait_socket.emit('wait success',{token1:token,token2:anotherToken,role1:role,role2:anotherRole});            
+          }
     		}
   		});
    	});

@@ -32,7 +32,7 @@ Utils.checkToken();
 				if(current >= 100){
 					setTimeout(function(){
 						socket.emit("post preload",{token:token});
-						// document.location.href="/playerselect";
+						document.location.href="/playerselect";
 					},3000);
 				}
 				current++;

@@ -5,13 +5,13 @@ body.wait-wrapper{
 	margin: 80px auto;
 }
 .wait-wrapper .player-one{
-	width: 400px;
+	width: 300px;
 	height: 400px;
 	float: left;
 }
 .wait-wrapper .vs{
 	float: left;
-	width: 200px;
+	width: 400px;
 	height: 400px;
 	line-height: 400px;
 	font-size: 80px;
@@ -29,25 +29,14 @@ body.wait-wrapper{
 }
 .wait-wrapper .player-one img,
 .wait-wrapper .player-wait img{
-	width: 400px;
+	width: 300px;
 	height: 400px;
 	box-shadow: 0 0 50px #fff;
 	border-radius: 20px;
 }
 .wait-wrapper .player-wait{
-	width: 400px;
+	width: 300px;
 	height: 400px;
 	float: right;
-}
-.wait-wrapper p {
-	margin-top:20px;
-	width: 400px;
-	height: 40px;
-	text-align: center;
-	color: #fff;
-	font-size:30px;
-}
-#another_player{
-	display:none;
 }
 
