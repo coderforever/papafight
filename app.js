@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var playerselect = require('./routes/playerselect');
 var preload = require('./routes/preload');
 var waitplayer = require('./routes/waitplayer');
+var fight = require('./routes/fight');
 
 var app = express();
 
@@ -27,6 +28,10 @@ app.use('/', index);
 app.use('/playerselect', playerselect);
 app.use('/preload', preload);
 app.use('/waitplayer',waitplayer);
+app.use('/fight',fight);
+
+//设置图片最大大小
+app.use(bodyParser({limit: '5mb'}));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,6 +63,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;

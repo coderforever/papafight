@@ -1,0 +1,19 @@
+@import url(reset.css);
+body{
+    background: #191215  url('../images/bg.jpg') center center no-repeat;
+}
+#container {
+    width: 800px;
+    margin:10px auto;
+}
+
+#video,#canvas{
+	width:500px;
+	height:500px;
+	margin:0 auto;
+	display:block;
+}
+
+#canvas{
+	display:none;
+}

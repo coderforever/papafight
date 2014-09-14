@@ -1,7 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var fs=require('fs');
 
-app.post('/upload', function(req, res){
+router.get('/', function(req, res) {   
+    res.render('index');
+});
+
+router.get('/mobile', function(req, res) {
+    res.render('mobile/index');
+});
+
+router.get('/takephoto', function(req, res) {
+    res.render('takephoto');
+});
+
+router.post('/upload', function(req, res){
     //接收前台POST过来的base64
     var imgData = req.body.imgData;
     //过滤data:URL
@@ -15,4 +28,5 @@ app.post('/upload', function(req, res){
         }
     });
 });
+
 module.exports = router;
