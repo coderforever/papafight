@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({limit:'2mb'}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -29,9 +29,6 @@ app.use('/playerselect', playerselect);
 app.use('/preload', preload);
 app.use('/waitplayer',waitplayer);
 app.use('/fight',fight);
-
-//设置图片最大大小
-app.use(bodyParser({limit: '5mb'}));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

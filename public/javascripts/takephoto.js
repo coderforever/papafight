@@ -1,4 +1,9 @@
+// Utils.checkToken();
+
 $(function(){
+	//获取token
+	var storage=new Storage();
+	var token=storage.getItem("token");
 	//获取视频流
 	var video_element = document.getElementById('video');  
 	if(navigator.webkitGetUserMedia) { 
@@ -14,14 +19,10 @@ $(function(){
 	$("#takephoto").click(function(){
 		var canvas =document.getElementById('canvas');  
          var ctx = canvas.getContext('2d');  
-         var cw = 500;  
-         var ch = 500;  
-         ctx.fillStyle="#ffffff";  
-         ctx.fillRect(0, 0, cw, ch);  
-         ctx.drawImage(video_element, 0, 0, cw,ch);  
+         ctx.drawImage(video_element, 0, 0);  
          var imgData=canvas.toDataURL("image/png"); 
-         console.log(imgData);
-         $.post("upload",{'imgData':imgData});
+         // console.log(imgData.length);
+         $.post("upload",{'imgData':imgData,'token':token});
          // document.location.href=imgData; 
 	});
 });
