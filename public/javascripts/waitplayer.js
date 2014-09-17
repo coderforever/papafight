@@ -32,6 +32,8 @@ $(function(){
 			storage.setItem("opponent_role",data["role1"]);
 		}
 		//进入打斗页面
-		document.location.href="/fight";
+		setTimeout(function(){
+			document.location.href="/fight";
+		},3000);
 	});
 });
