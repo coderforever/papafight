@@ -49,7 +49,7 @@ $(function(){
 			}
 			
 		}
-		//出拳选择，屏幕向上（beta=0，gamma=0），y加速度
+		//出拳选择，屏幕向上（beta=0，gamma=0），y加速度；防守时候看beta趋近于90
 		else if((Math.abs(y)>8 && (lastBeta>=0 && lastBeta<=30)) && (lastGamma>=0 && lastGamma<=30)){
 			socket.emit("post playerselected",{token:token});
 			document.location.href="/fight/mobile";				
@@ -60,6 +60,7 @@ $(function(){
 		if(!canStart){
 			return;
 		}
+		//beta--绕x轴，gamma--绕y轴，alpha--绕z轴
 		lastGamma=Math.abs(evt.gamma);
 		lastBeta=Math.abs(evt.beta);
  	},true);
