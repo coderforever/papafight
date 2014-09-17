@@ -5,8 +5,4 @@ router.get('/', function(req, res) {
     res.render('waitplayer');
 });
 
-router.get('/mobile', function(req, res) {
-    res.render('mobile/waitplayer');
-});
-
 module.exports = router;

@@ -4,11 +4,11 @@ var fs=require('fs');
 
 
 router.get('/', function(req, res) {   
-    res.render('index');
+    res.render('fight');
 });
 
 router.get('/mobile', function(req, res) {
-    res.render('mobile/index');
+    res.render('mobile/fight');
 });
 
 router.get('/takephoto', function(req, res) {

@@ -20,14 +20,18 @@ $(function(){
 		if(data["token1"]==token){
 			var img="/images/role/"+data["role2"]+".png";
 			$("#another_image").attr("src",img);
-			$("#opponent_token").text(data["token2"]);
 			$("#another_player").show();
+			storage.setItem("opponent_token",data["token2"]);
+			storage.setItem("opponent_role",data["role2"]);
 		}
 		else if(data["token2"]==token){
 			var img="/images/role/"+data["role1"]+".png";
 			$("#another_image").attr("src",img);
-			$("#opponent_token").text(data["token1"]);
 			$("#another_player").show();
+			storage.setItem("opponent_token",data["token1"]);
+			storage.setItem("opponent_role",data["role1"]);
 		}
+		//进入打斗页面
+		document.location.href="/fight";
 	});
 });

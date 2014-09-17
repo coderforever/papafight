@@ -52,7 +52,7 @@ $(function(){
 		//出拳选择，屏幕向上（beta=0，gamma=0），y加速度
 		else if((Math.abs(y)>8 && (lastBeta>=0 && lastBeta<=30)) && (lastGamma>=0 && lastGamma<=30)){
 			socket.emit("post playerselected",{token:token});
-			document.location.href="/waitplayer/mobile";				
+			document.location.href="/fight/mobile";				
 		}
 	},true);
 	//屏幕方向
