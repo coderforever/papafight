@@ -14,3 +14,4 @@ global.socket = require('socket.io')(8080);
 require('./service/login');
 require('./service/orientation');
 require('./service/waitplayer');
+require('./service/continue');
