@@ -4,14 +4,20 @@ body{
 }
 #container {
     width: 800px;
-    margin:10px auto;
+    margin:0px auto;
 }
 
 #video,#canvas{
-	margin:0 auto;
 	display:block;
+	margin-left:120px;
 }
 
 #canvas{
 	display:none;
 }
+
+#ok{
+	position:absolute;
+	display:none;
+}
+

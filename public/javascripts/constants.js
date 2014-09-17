@@ -14,7 +14,8 @@ RESOURCE.IMAGES=[
 	"/images/role/3.png",
 	"/images/role/4.png",
 	"/images/role/5.png",
-	"/images/playerselect-bg.jpg"
+	"/images/playerselect-bg.jpg",
+	"/images/camera.png"
 ];
 RESOURCE.AUDIOS=[
 	"/audios/bomb.wav",

@@ -7,13 +7,15 @@
     <script src="/javascripts/takephoto.js"></script>
   </head>
   <body>
-  <div id="container">
-    <video id="video" autoplay="" width="500" height="500"></video>  
-    <canvas id="canvas" width="500" height="500"></canvas>  
-    <div class="control">
-      <button id="takephoto">确定拍照</button>
-      <button id="skip">跳过</button>
+    <div id="container">
+      <img src="/images/camera.png" style="float:right;"/>
+      <video id="video" autoplay="" width="500" height="500"></video>  
+      <div class="control">
+        <button id="takephoto">确定拍照</button>
+        <button id="continue">跳过</button>
+      </div>
     </div>
-  </div>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <img src="/images/ok.png" id="ok"/>  
   </body>
 </html>
