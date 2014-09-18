@@ -1,6 +1,7 @@
 // Utils.checkToken();
 
 $(function(){
+	Utils.verticalMiddle("body.wait-wrapper");
 	//播放音频
 	Utils.playAudio("/audios/loading.wav",true);
 	//vs闪烁动画

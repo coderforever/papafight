@@ -2,7 +2,7 @@
 body.wait-wrapper{
 	background: #191215  url('../images/bg.jpg') center center no-repeat;
 	width: 1000px;
-	margin: 80px auto;
+	margin: 0px auto;
 }
 .wait-wrapper .player-one{
 	width: 300px;
@@ -32,7 +32,6 @@ body.wait-wrapper{
 	width: 300px;
 	height: 400px;
 	box-shadow: 0 0 50px #fff;
-	border-radius: 20px;
 }
 .wait-wrapper .player-wait{
 	width: 300px;
