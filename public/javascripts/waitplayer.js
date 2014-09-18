@@ -1,4 +1,4 @@
-Utils.checkToken();
+// Utils.checkToken();
 
 $(function(){
 	//播放音频

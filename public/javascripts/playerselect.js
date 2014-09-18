@@ -76,6 +76,7 @@ Utils.checkToken();
 	}
 
 	function initBg() {
+		Utils.verticalMiddle('#gla_box');
 		var sH = $(document).height(),
 			sW = $(document).width();
 		$('#bg-img').find('img').css({

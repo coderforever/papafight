@@ -18,3 +18,12 @@ Utils.playAudio=function(audioURL,isLoop){
 	audio.play();
 	return audio;
 }
+
+Utils.verticalMiddle=function(selector){
+	var h = $(window).height(),
+		ele = $(selector);
+	ele.css({
+		top: (h - ele.height())/2,
+		position:"relative"
+	});
+}

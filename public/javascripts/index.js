@@ -1,7 +1,7 @@
 (function($, undefined){
 	function init(){
 		initSonic();
-		initBeat();
+		Utils.verticalMiddle('div.beat-wrapper');
 		initLoad();
 	}
 	function initSonic(){
@@ -45,17 +45,11 @@
 		});
 	}
 
-	function initBeat(){
-		var h = $(window).height(),
-			ele = $('div.beat-wrapper');
-		ele.css({
-			top: (h - ele.height())/2
-		});
-	}
 	function initLoad(){
 		window.onload = function() {
 			setTimeout(function() {
 				$('div.beat-wrapper').fadeOut('slow',function(){
+					Utils.verticalMiddle('.papa-wrapper');
 					$('.papa-wrapper').show();
 					$('body').addClass('wrapper').removeClass('init');
 				});
