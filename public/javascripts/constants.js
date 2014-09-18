@@ -6,6 +6,8 @@ var ACTION={};
 ACTION.ATTACK="attack";
 ACTION.DEFEND="defend";
 ACTION.NODEFEND="nodefend";
+ACTION.ESCAPELEFT="escapeLeft";
+ACTION.ESCAPERIGHT="escapeRight";
 
 var RESOURCE={};
 RESOURCE.IMAGES=[

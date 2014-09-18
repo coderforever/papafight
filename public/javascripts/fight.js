@@ -1,5 +1,5 @@
 Utils.checkToken();
 
 $(function(){
-
+	
 });
