@@ -46,7 +46,9 @@ $(function(){
 				canStart=false;
 				setTimeout(function(){
 					canStart=true;
-				},400);
+					lastZ_1=0;
+					lastZ_2=0;
+				},500);
 			}
 			
 		}

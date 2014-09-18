@@ -22,5 +22,8 @@ module.exports = function() {
           }
     		}
   		});
+      socket.on('enter fight page', function(data){
+        wait_socket.emit('begin fight',data);
+      });
    	});
 }();
