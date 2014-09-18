@@ -1,4 +1,4 @@
-// Utils.checkToken();
+Utils.checkToken();
 
 $(function(){
 	Utils.verticalMiddle("body.wait-wrapper");

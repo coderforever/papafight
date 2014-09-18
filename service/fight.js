@@ -2,16 +2,13 @@
 	判断手势相关的websocket服务
 */
 
-module.exports = function() {    
+module.exports = function() {
+  var  STATUS = {};  
 	var playerselect_socket=global.socket.of('/fight').on('connection', function(socket) { 
-   		socket.on('post preload', function(data){
-   			playerselect_socket.emit('preload success',data);
+   		socket.on('attack', function(data){
+        var key = data.operator;
+        var value = data.
+   			STATUS.
    		});
-   		socket.on('post playerselect', function (data) {
-    		playerselect_socket.emit('playerselect success',data);
-  		});
-  		socket.on('post playerselected', function(data){
-  			playerselect_socket.emit('playerselected success',data);
-  		});
    	});
 }();
