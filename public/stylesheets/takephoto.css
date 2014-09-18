@@ -4,7 +4,6 @@ body{
 }
 #container {
     width: 800px;
-    height: 800px;
     margin:0px auto;
 }
 
@@ -24,7 +23,7 @@ body{
 .control{
 	width: 600px;
 	height: 80px;
-	margin: 0 auto;
+	margin: 40px auto;
 }
 #takephoto{
 	display: block;
