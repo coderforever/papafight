@@ -12,6 +12,7 @@ pids
 logs
 results
 demo-hc
+snapshot
 
 npm-debug.log
 node_modules
