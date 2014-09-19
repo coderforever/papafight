@@ -1,7 +1,13 @@
-Utils.checkToken();
+// Utils.checkToken();
 
 $(function(){
-	var isStart=false;
+	// var canStart=false;
+	var lastGamma=0;
+	var lastBeta=0;
+	var canStart=true;
+	var lastZ_1=0;
+	var lastZ_2=0;
+	var isAsc=true;
 	//操作storage
 	var storage=new Storage();
 	var my_token=storage.getItem("token");
@@ -22,10 +28,10 @@ $(function(){
 	//电脑端已经进入fight页面
 	socket.on("begin fight",function(data){
 		if(data["token"]==my_token){
-			isStart=true;
+			canStart=true;
 		}
 	});
-	// var fight_socket=io.connect(document.domain+":8080/fight");
+	var fight_socket=io.connect(document.domain+":8080/fight");
 	//设备加速度
 	window.addEventListener("devicemotion",function(evt){
 		if(!canStart){
@@ -33,7 +39,6 @@ $(function(){
 		}
 		var y=evt.acceleration.y;
 		var z=evt.acceleration.z;
-		$("#z").text(z);
 		lastZ_1=lastZ_2;
 		lastZ_2=z;
 		var compare1=lastZ_1>=0;
@@ -47,7 +52,6 @@ $(function(){
 		}
 		//手机左右摆动并且手机屏幕垂直地面(gamma=90)
 		if(Math.abs(lastZ_1)>6 && (lastGamma>60 && lastGamma<=120)){
-
 			if(Math.abs(z)<Math.abs(lastZ_1)){
 				var orientation=ORIENTATION.RIGHT;
 				if(lastZ_1<0){
@@ -56,20 +60,36 @@ $(function(){
 				isAsc=false;				
 				//发送加速度
 				// socket.emit("post playerselect",{token:token,orientation:orientation});
-				$("#console").append("escape");
+				$("#console").append("escape"+orientation+"<br/>");
 				canStart=false;
 				setTimeout(function(){
 					canStart=true;
 					lastZ_1=0;
 					lastZ_2=0;
-				},500);
+				},ACTION_PERIOD);
 			}
 			
 		}
-		//出拳选择，屏幕向上（beta=0，gamma=0），y加速度；防守时候看beta趋近于90
+		//出拳选择，屏幕向上（beta=0，gamma=0），y加速度；
 		else if((Math.abs(y)>8 && (lastBeta>=0 && lastBeta<=30)) && (lastGamma>=0 && lastGamma<=30)){
 			// socket.emit("post playerselected",{token:token});
-			$("#console").append("attack");			
+			$("#console").append("attack<br/>");
+			canStart=false;
+			setTimeout(function(){
+				canStart=true;
+			},ACTION_PERIOD);			
+		}
+		//防守时候看beta趋近于90
+		else if(lastBeta>60 && lastBeta<=120){
+			$("#console").append("defend<br/>");
+			canStart=false;
+			setTimeout(function(){
+				canStart=true;
+			},ACTION_PERIOD);
+		}
+		//无防守
+		else{
+			
 		}
 	},true);
 	//屏幕方向

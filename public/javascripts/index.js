@@ -19,7 +19,7 @@
 			//收到手机发来的超声波事件的回调
 			sserver.on("message",function(message){
 				$("#token").text(message);
-				$("div.binding").fadeOut();
+				$("div.binding").hide();
 				$("#token_area").fadeIn();
 			});
 			//超声波服务开启
