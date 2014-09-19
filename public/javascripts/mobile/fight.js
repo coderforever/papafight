@@ -1,10 +1,9 @@
 // Utils.checkToken();
 
 $(function(){
-	// var canStart=false;
+	var canStart=false;
 	var lastGamma=0;
 	var lastBeta=0;
-	var canStart=true;
 	var lastZ_1=0;
 	var lastZ_2=0;
 	var isAsc=true;
