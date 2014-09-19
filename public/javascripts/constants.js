@@ -21,7 +21,18 @@ RESOURCE.IMAGES=[
 	"/images/role/5.png",
 	"/images/playerselect-bg.jpg",
 	"/images/camera.png",
-	"/images/countdown.gif"
+	"/images/blood-box.png",
+	"/images/blood-green.png",
+	"/images/blood-red.png",
+	"/images/capture.png",
+	"/images/hit.png",
+	"/images/lose.gif",
+	"/images/me2.png",
+	"/images/me3.png",
+	"/images/ok.png",
+	"/images/rival2.png",
+	"/images/rival3.png",
+	"/images/win.gif"
 ];
 RESOURCE.AUDIOS=[
 	"/audios/bomb.wav",

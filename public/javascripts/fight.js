@@ -17,8 +17,6 @@ $(function(){
             img: '/images/me'+my_role+'.png'
         } 
     });
-    // $("#countdown>img").attr("src","/images/countdown.gif");
-    // $("#countdown").show();
 	//游戏音频
 	var bkAudio=null;
 	var beginAudio=Utils.playAudio("/audios/fight_begin.wav");
@@ -73,6 +71,12 @@ $(function(){
 			}
 			else{
 				blooddrop.play();
+			}
+			if(data["operator"]==my_token){
+				$("#fight-hit").fadeIn();
+				setTimeout(function(){
+					$("#fight-hit").hide();
+				},3000);
 			}
 		}
 	});

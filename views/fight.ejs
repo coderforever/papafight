@@ -81,6 +81,17 @@
         background-color: #fff;
         opacity: .75;
     }
+    #fight-hit{
+        position:absolute;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        left:0px;
+        top:0px;
+        z-index:9;
+        display:none;
+        background:url("/images/hit.png");
+    }
     </style>
   </head>
   <body>
@@ -100,6 +111,7 @@
     </div>
     <div id="gamer-container"></div>
     <div id="fight-result"></div>
+    <div id="fight-hit"></div>
    <script>
     var fight_socket=io.connect(document.domain+":8080/fight");
     var storage=new Storage();
