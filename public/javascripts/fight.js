@@ -17,10 +17,10 @@ $(function(){
             img: '/images/me'+my_role+'.png'
         } 
     });
-    $("#countdown>img").attr("src","/images/countdown.gif");
-    $("#countdown").show();
+    // $("#countdown>img").attr("src","/images/countdown.gif");
+    // $("#countdown").show();
 	//游戏音频
-	// var bkAudio=null;
+	var bkAudio=null;
 	var beginAudio=Utils.playAudio("/audios/fight_begin.wav");
 	var punch=null;
 	var escape=null;
@@ -31,8 +31,8 @@ $(function(){
 		socket.emit("enter fight page",{token:my_token});
 		beginAudio.pause();
 		$("#countdown").hide();
-		// bkAudio=Utils.playAudio("/audios/fight_bk.wav",true);
-	},4000);
+		bkAudio=Utils.playAudio("/audios/fight_bk.wav",true);
+	},5000);
 	
 	//链接fight的socket
 	var fight_socket=io.connect(document.domain+":8080/fight");
