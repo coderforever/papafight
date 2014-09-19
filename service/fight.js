@@ -33,16 +33,16 @@ module.exports = function() {
 	   			
 	   			if(!!PLAYERS[target] && PLAYERS[target].status == ACTION.d){
 	   				//发起一次攻击，被防御（有效）
-	   				result = 1;
+	   				result = 3;
 	   			} else if(!!PLAYERS[target] && PLAYERS[target].status == ACTION.l){
 	   				//发起一次攻击，左侧闪躲（有效）
-	   				result = 2;
+	   				result = 0;
 	   			} else if(!!PLAYERS[target] && PLAYERS[target].status == ACTION.r) {
 	   				//发起一次攻击，右侧闪躲（有效）
-	   				result = 3;
+	   				result = 0;
 	   			} else {
 	   				//发起一次攻击，对手没有防守
-	   				result = 4;
+	   				result = 10;
 	   			}
 	   			fight_socket.emit('attack result',{
 		   			'operator': operator,
