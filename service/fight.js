@@ -10,15 +10,14 @@ module.exports = function() {
 		l: "escapeLeft",
 		r: "escapeRight"
 	};
-	var IS_MOVE = false;
 	var PLAYERS = {};
 	var fight_socket=global.socket.of('/fight').on('connection', function(socket) { 
    		socket.on('attack', function(data){
-   			if(!!IS_MOVE) {
-	   			return;
-	   		}
 	        var operator = data.operator;
 	        var target = data.target;
+	        if(!!checkRemove(operator)) {
+	   			return;
+	   		}
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
 	   		PLAYERS[operator]['status'] = ACTION.a;
@@ -53,11 +52,11 @@ module.exports = function() {
 	   		},1000);
    		});
    		socket.on('defend', function(data){
-   			if(!!IS_MOVE) {
+   			var operator = data.operator;
+	        var target = data.target;
+	        if(!!checkRemove(operator)) {
 	   			return;
 	   		}
-	        var operator = data.operator;
-	        var target = data.target;
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
 	   		if(PLAYERS[operator]['status'] != ACTION.d){
@@ -70,11 +69,11 @@ module.exports = function() {
 	   		}
    		});
    		socket.on('nodefend', function(data){
-   			if(!!IS_MOVE) {
+   			var operator = data.operator;
+	        var target = data.target;
+	        if(!!checkRemove(operator)) {
 	   			return;
 	   		}
-	        var operator = data.operator;
-	        var target = data.target;
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
 	   		if(PLAYERS[operator]['status'] != ACTION.n){
@@ -87,12 +86,13 @@ module.exports = function() {
 	   		}
    		});
    		socket.on('escapeLeft', function(data){
-   			if(!!IS_MOVE) {
-	   			return;
-	   		}
-   			IS_MOVE = true;
    			var operator = data.operator;
 	        var target = data.target;
+	        if(!!checkRemove(operator)) {
+	   			return;
+	   		}
+	   		PLAYERS[operator]['is_move'] = true;
+
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
 	   		PLAYERS[operator]['status'] = ACTION.l;
@@ -103,16 +103,18 @@ module.exports = function() {
    			});
    			setTimeout(function() {
    				PLAYERS[operator]['status'] = ACTION.n;
-   				IS_MOVE = false;
+   				PLAYERS[operator]['is_move'] = false;
+				console.log(PLAYERS);
    			}, 1000);
    		});
    		socket.on('escapeRight', function(data){
-   			if(!!IS_MOVE) {
-	   			return;
-	   		}
-   			IS_MOVE = true;
 	        var operator = data.operator;
 	        var target = data.target;
+	        if(!!checkRemove(operator)) {
+	   			return;
+	   		}
+	   		PLAYERS[operator]['is_move'] = true;
+
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
 	   		PLAYERS[operator]['status'] = ACTION.r;
@@ -123,8 +125,17 @@ module.exports = function() {
    			});
    			setTimeout(function() {
    				PLAYERS[operator]['status'] = ACTION.n;
-   				IS_MOVE = false;
+   				PLAYERS[operator]['is_move'] = false;
+	   			console.log(PLAYERS);
    			}, 1000);
    		});
+   		function checkRemove(operator) {
+   			if(!!PLAYERS[operator] && !!PLAYERS[operator]['is_move']) {
+	   			return true;
+	   		} else{
+	   			return false;
+	   		}
+   		}
    	});
+
 }();
