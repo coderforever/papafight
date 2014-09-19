@@ -50,8 +50,7 @@ module.exports = function() {
 		   			'result': result
 		   		});
 
-	   		},800);
-	   		console.log(PLAYERS);
+	   		},1000);
    		});
    		socket.on('defend', function(data){
    			if(!!IS_MOVE) {
@@ -68,7 +67,6 @@ module.exports = function() {
 	   				'operator': operator,
 		   			'target': target
 	   			});
-		   		console.log(PLAYERS);
 	   		}
    		});
    		socket.on('nodefend', function(data){
@@ -86,7 +84,6 @@ module.exports = function() {
 	   				'operator': operator,
 		   			'target': target
 	   			});
-		   		console.log(PLAYERS);
 	   		}
    		});
    		socket.on('escapeLeft', function(data){
@@ -107,8 +104,7 @@ module.exports = function() {
    			setTimeout(function() {
    				PLAYERS[operator]['status'] = ACTION.n;
    				IS_MOVE = false;
-   			}, 800);
-			console.log(PLAYERS);
+   			}, 1000);
    		});
    		socket.on('escapeRight', function(data){
    			if(!!IS_MOVE) {
@@ -128,8 +124,7 @@ module.exports = function() {
    			setTimeout(function() {
    				PLAYERS[operator]['status'] = ACTION.n;
    				IS_MOVE = false;
-   			}, 800);
-	   		console.log(PLAYERS);
+   			}, 1000);
    		});
    	});
 }();
