@@ -7,7 +7,14 @@ lib-cov
 *.pid
 *.gz
 *.psd
-
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
 pids
 logs
 results
@@ -16,3 +23,12 @@ snapshot
 
 npm-debug.log
 node_modules
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
