@@ -116,6 +116,9 @@ $(function(){
  	},true);
 
  	fight_socket.on('mobile over', function(data) {
+ 		if(data.token != my_token) {
+ 			return;
+ 		}
  		if(data.result == 'success'){
  			window.location.href = '/fight/mobileshare';
  		} else{

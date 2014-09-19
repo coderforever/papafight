@@ -130,7 +130,7 @@ module.exports = function() {
    			}, 1500);
    		});
    		socket.on('fight over', function(data) {
-   			socket.emit('mobile over', data);
+   			fight_socket.emit('mobile over', data);
    			if(!!PLAYERS[data.token]) {
    				delete PLAYERS[data.token];
    			}
