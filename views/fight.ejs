@@ -67,7 +67,7 @@
         right: 5px;
         transform: rotateY(180deg);
     }
-    #countdown{
+    #fight-result{
     	position:absolute;
     	width:100%;
     	height:100%;
@@ -75,7 +75,11 @@
     	left:0px;
     	top:0px;
     	z-index:99;
-    	display:none;
+        background-position: center center;
+        border-right: no-repeat;
+        background-color: #fff;
+        display: none;
+        opacity: .75;
     }
     </style>
   </head>
@@ -95,10 +99,11 @@
         <img src="/images/avatar3.png" alt="">
     </div>
     <div id="gamer-container"></div>
-    <div id="countdown">
-    	<img src=""/>
-    </div>
+    <div id="fight-result"></div>
    <script>
+    var fight_socket=io.connect(document.domain+":8080/fight");
+    var storage=new Storage();
+    var my_token=storage.getItem("token");
     var PPKD = function($, Hilo){
         var app = {
             container: $('#gamer-container'),
@@ -186,12 +191,24 @@
                         player.blood -= blood;
                         self.updateBlood();
                         if(player.blood<=0){
+                            var url,
+                                result;
                         	if(role=='me'){
                         		//自己输了
+                                $('#fight-result').css('background-image', '/images/lost.gif');
+                                url = '/waitplayer';
+                                result = 'fail';
                         	}
                         	else{
-                        		//自己赢了
+                        		$('#fight-result').css('background-image', '/images/win.gif');
+                                url = '/fight/takephoto';
+                                result = 'success';
                         	}
+                            $('#fight-result').fadeIn();
+                            fight_socket.emit('fight over', {token: my_token, result: result});
+                            setTimeout(function() {
+                                window.location = url;
+                            }, 500);
                         }
                     }                    
 

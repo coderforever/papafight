@@ -114,4 +114,12 @@ $(function(){
 		lastGamma=Math.abs(evt.gamma);
 		lastBeta=Math.abs(evt.beta);
  	},true);
+
+ 	fight_socket.on('mobile over', function(data) {
+ 		if(data.result == 'success'){
+ 			window.location.href = '/fight/mobileshare';
+ 		} else{
+ 			window.location.href = '/fight/mobile';
+ 		}
+ 	})
 });

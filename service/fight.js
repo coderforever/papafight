@@ -129,6 +129,12 @@ module.exports = function() {
 	   			console.log(PLAYERS);
    			}, 1500);
    		});
+   		socket.on('fight over', function(data) {
+   			socket.emit('mobile over', data);
+   			if(!!PLAYERS[data.token]) {
+   				delete PLAYERS[data.token];
+   			}
+   		})
    		function checkRemove(operator) {
    			if(!!PLAYERS[operator] && !!PLAYERS[operator]['is_move']) {
 	   			return true;
