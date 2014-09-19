@@ -9,18 +9,13 @@ module.exports = function() {
 		m: "nodefend",
 		l: "escapeLeft",
 		r: "escapeRight"
-	}; 
-	var RESULTS = {
-		'invalid': 'invalid',
-		'valid': 'valid'
 	};
 	var PLAYERS = {};
 	var fight_socket=global.socket.of('/fight').on('connection', function(socket) { 
    		socket.on('attack', function(data){
-   			console.log(data)
 	        var operator = data.operator;
 	        var target = data.target;
-	        PLAYERS[operator] = {};
+	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
 	   		PLAYERS[operator]['status'] = ACTION.a;
 
@@ -32,45 +27,79 @@ module.exports = function() {
 	   		var result;
 	   		setTimeout(function() {
 	   			
-	   			if(!!PLAYERS[target] && PLAYERS[target].status == ACTION.defend){
-	   				result = RESULTS['valid'];
+	   			if(!!PLAYERS[target] && PLAYERS[target].status == ACTION.d){
+	   				//发起一次攻击，被防御（有效）
+	   				result = 1;
+	   			} else if(!!PLAYERS[target] && PLAYERS[target].status == ACTION.l){
+	   				//发起一次攻击，左侧闪躲（有效）
+	   				result = 2;
+	   			} else if(!!PLAYERS[target] && PLAYERS[target].status == ACTION.r) {
+	   				//发起一次攻击，右侧闪躲（有效）
+	   				result = 3;
 	   			} else {
-	   				result = RESULTS['invalid'];
+	   				//发起一次攻击，对手没有防守
+	   				result = 4;
 	   			}
 	   			fight_socket.emit('attack result',{
 		   			'operator': operator,
 		   			'target': target,
 		   			'result': result
 		   		});
+
 	   		},400);
+	   		console.log(PLAYERS);
    		});
    		socket.on('defend', function(data){
-	        var key = data.operator;
-	        var value = data.target;
-	        
-	   		ACTION[key] = value;
+	        var operator = data.operator;
+	        var target = data.target;
+	        PLAYERS[operator] = PLAYERS[operator] || {};
+	   		PLAYERS[operator]['target'] = target;
+	   		PLAYERS[operator]['status'] = ACTION.d;
 
+	   		fight_socket.emit('defend', {
+   				'operator': operator,
+	   			'target': target
+   			});
+	   		console.log(PLAYERS);
    		});
    		socket.on('nodefend', function(data){
-	        var key = data.operator;
-	        var value = data.target;
-	        
-	   		ACTION[key] = value;
+	        var operator = data.operator;
+	        var target = data.target;
+	        PLAYERS[operator] = PLAYERS[operator] || {};
+	   		PLAYERS[operator]['target'] = target;
+	   		PLAYERS[operator]['status'] = ACTION.n;
 
+	   		fight_socket.emit('nodefend', {
+   				'operator': operator,
+	   			'target': target
+   			});
+	   		console.log(PLAYERS);
    		});
    		socket.on('escapeLeft', function(data){
-	        var key = data.operator;
-	        var value = data.target;
-	        
-	   		ACTION[key] = value;
+   			var operator = data.operator;
+	        var target = data.target;
+	        PLAYERS[operator] = PLAYERS[operator] || {};
+	   		PLAYERS[operator]['target'] = target;
+	   		PLAYERS[operator]['status'] = ACTION.n;
 
+	   		fight_socket.emit('escapeLeft', {
+   				'operator': operator,
+	   			'target': target
+   			});
+			console.log(PLAYERS);
    		});
    		socket.on('escapeRight', function(data){
-	        var key = data.operator;
-	        var value = data.target;
-	        
-	   		ACTION[key] = value;
+	        var operator = data.operator;
+	        var target = data.target;
+	        PLAYERS[operator] = PLAYERS[operator] || {};
+	   		PLAYERS[operator]['target'] = target;
+	   		PLAYERS[operator]['status'] = ACTION.n;
 
+	   		fight_socket.emit('escapeRight', {
+   				'operator': operator,
+	   			'target': target
+   			});
+	   		console.log(PLAYERS);
    		});
    	});
 }();
