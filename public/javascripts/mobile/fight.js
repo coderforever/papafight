@@ -65,6 +65,7 @@ $(function(){
 					action=ACTION.ESCAPELEFT;
 					orientation=ORIENTATION.LEFT;
 				}
+				fight_socket.emit(action,{operator:my_token,target:target_token});
 				isAsc=false;				
 				$("#console").append("escape"+orientation+"<br/>");
 				canStart=false;
@@ -79,6 +80,7 @@ $(function(){
 		//出拳选择，屏幕向上（beta=0，gamma=0），y加速度；
 		else if((Math.abs(y)>8 && (lastBeta>=0 && lastBeta<=30)) && (lastGamma>=0 && lastGamma<=30)){
 			action=ACTION.ATTACK;
+			fight_socket.emit(action,{operator:my_token,target:target_token});
 			$("#console").append("attack<br/>");
 			canStart=false;
 			setTimeout(function(){
@@ -88,6 +90,7 @@ $(function(){
 		//防守时候看beta趋近于90
 		else if(lastBeta>60 && lastBeta<=120){
 			action=ACTION.DEFEND;
+			fight_socket.emit(action,{operator:my_token,target:target_token});
 			$("#console").append("defend<br/>");
 			canStart=false;
 			setTimeout(function(){
@@ -96,9 +99,12 @@ $(function(){
 		}
 		//无防守
 		else{
-			action=ACTION.NODEFEND;
+			//左边躲闪和右边躲闪需要服务器来重置无防守状态
+			if(action!=ACTION.ESCAPERIGHT && action!=ACTION.ESCAPELEFT){
+				action=ACTION.NODEFEND;
+				fight_socket.emit(action,{operator:my_token,target:target_token});
+			}
 		}
-		fight_socket.emit(action,{operator:my_token,target:target_token});
 	},true);
 	//屏幕方向
 	window.addEventListener("deviceorientation",function(evt){
