@@ -75,10 +75,10 @@
     	left:0px;
     	top:0px;
     	z-index:99;
-        background-position: center center;
-        border-right: no-repeat;
-        background-color: #fff;
         display: none;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: #fff;
         opacity: .75;
     }
     </style>
@@ -195,12 +195,12 @@
                                 result;
                         	if(role=='me'){
                         		//自己输了
-                                $('#fight-result').css('background-image', '/images/lost.gif');
+                                $('#fight-result').css('background-image', 'url("/images/lose.gif")');
                                 url = '/waitplayer';
                                 result = 'fail';
                         	}
                         	else{
-                        		$('#fight-result').css('background-image', '/images/win.gif');
+                        		$('#fight-result').css('background-image', 'url("/images/win.gif")');
                                 url = '/fight/takephoto';
                                 result = 'success';
                         	}
