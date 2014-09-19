@@ -3,13 +3,8 @@ body{
     background: #191215  url('../images/bg.jpg') center center no-repeat;
 }
 #container {
-    width: 800px;
+    width: 900px;
     margin:0px auto;
-}
-
-#video,#canvas{
-	display:block;
-	margin-left:120px;
 }
 
 #canvas{
@@ -23,7 +18,7 @@ body{
 .control{
 	width: 600px;
 	height: 80px;
-	margin: 40px auto;
+	margin: 100px auto;
 }
 #takephoto{
 	display: block;

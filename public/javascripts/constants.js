@@ -30,9 +30,8 @@ RESOURCE.AUDIOS=[
 	"/audios/orientation.wav",
 	"/audios/playerselect.wav",
 	"/audios/selectsuccess.wav",
-	"/audios/punch_no_defend.wav",
-	"/audios/punch_with_defend.wav",
-	"/audios/punch_with_hide.wav",
+	"/audios/punch.wav",
 	"/audios/winner.wav",
-	"/audios/loading.wav"
+	"/audios/loading.wav",
+	"/audios/blooddrop.mp3"
 ];

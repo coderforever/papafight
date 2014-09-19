@@ -49,8 +49,7 @@ module.exports = function() {
 		   			'result': result
 		   		});
 
-	   		},800);
-	   		console.log(PLAYERS);
+	   		},1000);
    		});
    		socket.on('defend', function(data){
    			var operator = data.operator;
@@ -67,7 +66,6 @@ module.exports = function() {
 	   				'operator': operator,
 		   			'target': target
 	   			});
-		   		console.log(PLAYERS);
 	   		}
    		});
    		socket.on('nodefend', function(data){
@@ -85,7 +83,6 @@ module.exports = function() {
 	   				'operator': operator,
 		   			'target': target
 	   			});
-		   		console.log(PLAYERS);
 	   		}
    		});
    		socket.on('escapeLeft', function(data){
@@ -107,8 +104,8 @@ module.exports = function() {
    			setTimeout(function() {
    				PLAYERS[operator]['status'] = ACTION.n;
    				PLAYERS[operator]['is_move'] = false;
-   			}, 800);
-			console.log(PLAYERS);
+				console.log(PLAYERS);
+   			}, 1000);
    		});
    		socket.on('escapeRight', function(data){
 	        var operator = data.operator;
@@ -129,8 +126,8 @@ module.exports = function() {
    			setTimeout(function() {
    				PLAYERS[operator]['status'] = ACTION.n;
    				PLAYERS[operator]['is_move'] = false;
-   			}, 800);
-	   		console.log(PLAYERS);
+	   			console.log(PLAYERS);
+   			}, 1000);
    		});
    		function checkRemove(operator) {
    			if(!!PLAYERS[operator] && !!PLAYERS[operator]['is_move']) {
