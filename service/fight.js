@@ -46,7 +46,7 @@ module.exports = function() {
 		   			'result': result
 		   		});
 
-	   		},400);
+	   		},800);
 	   		console.log(PLAYERS);
    		});
    		socket.on('defend', function(data){
