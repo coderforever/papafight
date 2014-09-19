@@ -105,7 +105,7 @@ module.exports = function() {
    				PLAYERS[operator]['status'] = ACTION.n;
    				PLAYERS[operator]['is_move'] = false;
 				console.log(PLAYERS);
-   			}, 1500);
+   			}, 1000);
    		});
    		socket.on('escapeRight', function(data){
 	        var operator = data.operator;
