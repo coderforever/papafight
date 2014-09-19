@@ -32,6 +32,7 @@ $(function(){
 		}
 	});
 	var fight_socket=io.connect(document.domain+":8080/fight");
+	var action=null;
 	//设备加速度
 	window.addEventListener("devicemotion",function(evt){
 		if(!canStart){
@@ -53,13 +54,13 @@ $(function(){
 		//手机左右摆动并且手机屏幕垂直地面(gamma=90)
 		if(Math.abs(lastZ_1)>6 && (lastGamma>60 && lastGamma<=120)){
 			if(Math.abs(z)<Math.abs(lastZ_1)){
+				action=ACTION.ESCAPERIGHT;
 				var orientation=ORIENTATION.RIGHT;
 				if(lastZ_1<0){
+					action=ACTION.ESCAPELEFT;
 					orientation=ORIENTATION.LEFT;
 				}
 				isAsc=false;				
-				//发送加速度
-				// socket.emit("post playerselect",{token:token,orientation:orientation});
 				$("#console").append("escape"+orientation+"<br/>");
 				canStart=false;
 				setTimeout(function(){
@@ -72,7 +73,7 @@ $(function(){
 		}
 		//出拳选择，屏幕向上（beta=0，gamma=0），y加速度；
 		else if((Math.abs(y)>8 && (lastBeta>=0 && lastBeta<=30)) && (lastGamma>=0 && lastGamma<=30)){
-			// socket.emit("post playerselected",{token:token});
+			action=ACTION.ATTACK;
 			$("#console").append("attack<br/>");
 			canStart=false;
 			setTimeout(function(){
@@ -81,6 +82,7 @@ $(function(){
 		}
 		//防守时候看beta趋近于90
 		else if(lastBeta>60 && lastBeta<=120){
+			action=ACTION.DEFEND;
 			$("#console").append("defend<br/>");
 			canStart=false;
 			setTimeout(function(){
@@ -89,8 +91,9 @@ $(function(){
 		}
 		//无防守
 		else{
-			
+			action=ACTION.NODEFEND;
 		}
+		fight_socket.emit(action,{token:my_token});
 	},true);
 	//屏幕方向
 	window.addEventListener("deviceorientation",function(evt){
