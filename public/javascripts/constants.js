@@ -20,7 +20,8 @@ RESOURCE.IMAGES=[
 	"/images/role/4.png",
 	"/images/role/5.png",
 	"/images/playerselect-bg.jpg",
-	"/images/camera.png"
+	"/images/camera.png",
+	"/images/countdown.gif"
 ];
 RESOURCE.AUDIOS=[
 	"/audios/bomb.wav",

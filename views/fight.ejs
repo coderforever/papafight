@@ -67,6 +67,16 @@
         right: 5px;
         transform: rotateY(180deg);
     }
+    #countdown{
+    	position:absolute;
+    	width:100%;
+    	height:100%;
+    	overflow: hidden;
+    	left:0px;
+    	top:0px;
+    	z-index:99;
+    	display:none;
+    }
     </style>
   </head>
   <body>
@@ -79,12 +89,15 @@
         <img src="/images/blood-green.png" alt="">
     </div>
     <div class="avatar-me">
-        <img src="/images/avatar.png" alt="">
+        <img src="/images/avatar3.png" alt="">
     </div>
     <div class="avatar-rival">
-        <img src="/images/avatar.png" alt="">
+        <img src="/images/avatar3.png" alt="">
     </div>
     <div id="gamer-container"></div>
+    <div id="countdown">
+    	<img src=""/>
+    </div>
    <script>
     var PPKD = function($, Hilo){
         var app = {
@@ -171,7 +184,7 @@
                         if (role === 'me')
                             player = self.me;
                         player.blood -= blood;
-
+                        self.updateBlood();
                         if(player.blood<=0){
                         	if(role=='me'){
                         		//自己输了
@@ -274,11 +287,11 @@
                     loop: true
                 }).setFrameCallback(obj.sprites.attack.to+1, function(){
                     //攻击动画
-                    self.updateBlood()
+                    // self.updateBlood()
                     this.goto(begin);
                 }).setFrameCallback(obj.sprites.defense.to+1, function(){
                     //防御动画
-                    self.updateBlood()
+                    // self.updateBlood()
                     this.goto(begin);
                 }).setFrameCallback(obj.sprites.static.to+1,function(){
                     //无动作 动画
@@ -286,7 +299,7 @@
                     this.goto(begin)
                 }).setFrameCallback(26, function(){
                     //一直防御
-                    self.updateBlood()
+                    // self.updateBlood()
                     this.stop();
                 });
 
