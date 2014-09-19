@@ -40,7 +40,7 @@ $(function(){
 	//跳转页面
 	photo_socket.on("new game",function(data){
  		if(data["token"]==token){
- 			document.location.href="/fight/mobile";
+ 			document.location.href="/playerselect/mobile";
  		}
  	});
 });

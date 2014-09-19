@@ -196,13 +196,15 @@
                         	if(role=='me'){
                         		//自己输了
                                 $('#fight-result').css('background-image', 'url("/images/lose.gif")');
-                                url = '/waitplayer';
+                                url = '/preload';
                                 result = 'fail';
+                                Utils.playAudio("/audios/looser.wav");
                         	}
                         	else{
                         		$('#fight-result').css('background-image', 'url("/images/win.gif")');
                                 url = '/fight/takephoto';
                                 result = 'success';
+                                Utils.playAudio("/audios/winner.wav");
                         	}
                             $('#fight-result').fadeIn();
                             fight_socket.emit('fight over', {token: my_token, result: result});

@@ -122,7 +122,7 @@ $(function(){
  		if(data.result == 'success'){
  			window.location.href = '/fight/mobileshare';
  		} else{
- 			window.location.href = '/fight/mobile';
+ 			window.location.href = '/playerselect/mobile';
  		}
  	})
 });

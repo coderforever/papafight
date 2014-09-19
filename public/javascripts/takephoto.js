@@ -35,7 +35,7 @@ $(function(){
 	//跳转页面
 	socket.on("new game",function(data){
  		if(data["token"]==token){
- 			document.location.href="/waitplayer";
+ 			document.location.href="/preload";
  		}
  	});
 });
