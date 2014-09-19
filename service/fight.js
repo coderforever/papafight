@@ -90,6 +90,9 @@ module.exports = function() {
    				'operator': operator,
 	   			'target': target
    			});
+   			setTimeout(function() {
+   				PLAYERS[operator]['status'] = ACTION.n;
+   			}, 800);
 			console.log(PLAYERS);
    		});
    		socket.on('escapeRight', function(data){
@@ -103,6 +106,9 @@ module.exports = function() {
    				'operator': operator,
 	   			'target': target
    			});
+   			setTimeout(function() {
+   				PLAYERS[operator]['status'] = ACTION.n;
+   			}, 800);
 	   		console.log(PLAYERS);
    		});
    	});
