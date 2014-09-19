@@ -15,3 +15,4 @@ require('./service/login');
 require('./service/orientation');
 require('./service/waitplayer');
 require('./service/continue');
+require('./service/fight');
