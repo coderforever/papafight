@@ -12,6 +12,7 @@ $(function(){
 	var storage=new Storage();
 	var my_token=storage.getItem("token");
 	var my_role=storage.getItem("role");
+	var target_token,target_role;
 	//创建waitplayer命名空间的socket
 	var socket=io.connect(document.domain+":8080/waitplayer");
 	//获取双方token
@@ -19,10 +20,14 @@ $(function(){
 		if(data["token1"]==my_token){
 			storage.setItem("opponent_token",data["token2"]);
 			storage.setItem("opponent_role",data["role2"]);
+			target_token=data["token2"];
+			target_role=data["role2"];
 		}
 		else if(data["token2"]==my_token){
 			storage.setItem("opponent_token",data["token1"]);
 			storage.setItem("opponent_role",data["role1"]);
+			target_token=data["token1"];
+			target_role=data["role1"];
 		}
 	});
 	//电脑端已经进入fight页面
@@ -93,7 +98,7 @@ $(function(){
 		else{
 			action=ACTION.NODEFEND;
 		}
-		fight_socket.emit(action,{token:my_token});
+		fight_socket.emit(action,{operator:my_token,target:target_token});
 	},true);
 	//屏幕方向
 	window.addEventListener("deviceorientation",function(evt){
