@@ -49,7 +49,7 @@ module.exports = function() {
 		   			'result': result
 		   		});
 
-	   		},1000);
+	   		},500);
    		});
    		socket.on('defend', function(data){
    			var operator = data.operator;
@@ -105,7 +105,7 @@ module.exports = function() {
    				PLAYERS[operator]['status'] = ACTION.n;
    				PLAYERS[operator]['is_move'] = false;
 				console.log(PLAYERS);
-   			}, 1000);
+   			}, 1500);
    		});
    		socket.on('escapeRight', function(data){
 	        var operator = data.operator;
@@ -127,7 +127,7 @@ module.exports = function() {
    				PLAYERS[operator]['status'] = ACTION.n;
    				PLAYERS[operator]['is_move'] = false;
 	   			console.log(PLAYERS);
-   			}, 1000);
+   			}, 1500);
    		});
    		function checkRemove(operator) {
    			if(!!PLAYERS[operator] && !!PLAYERS[operator]['is_move']) {

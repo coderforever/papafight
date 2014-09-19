@@ -7,6 +7,8 @@ $(function(){
 	var my_role=storage.getItem("role");
 	var opponent_token=storage.getItem("opponent_token");
 	var opponent_role=storage.getItem("opponent_role");
+	$(".avatar-me>img").attr("src","/images/avatar"+my_role+".png");
+	$(".avatar-rival>img").attr("src","/images/avatar"+opponent_role+".png");
 	var PPKD = window.PPKD.init({
         rival:{
             img: '/images/rival'+opponent_role+'.png'
@@ -15,8 +17,10 @@ $(function(){
             img: '/images/me'+my_role+'.png'
         } 
     });
+    // $("#countdown>img").attr("src","/images/countdown.gif");
+    // $("#countdown").show();
 	//游戏音频
-	// var bkAudio=null;
+	var bkAudio=null;
 	var beginAudio=Utils.playAudio("/audios/fight_begin.wav");
 	var punch=null;
 	var escape=null;
@@ -26,8 +30,9 @@ $(function(){
 		var socket=io.connect(document.domain+":8080/waitplayer");
 		socket.emit("enter fight page",{token:my_token});
 		beginAudio.pause();
-		// bkAudio=Utils.playAudio("/audios/fight_bk.wav",true);
-	},4000);
+		$("#countdown").hide();
+		bkAudio=Utils.playAudio("/audios/fight_bk.wav",true);
+	},5000);
 	
 	//链接fight的socket
 	var fight_socket=io.connect(document.domain+":8080/fight");
