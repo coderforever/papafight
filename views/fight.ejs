@@ -195,7 +195,7 @@
                                 result;
                         	if(role=='me'){
                         		//自己输了
-                                $('#fight-result').css('background-image', '/images/lost.gif');
+                                $('#fight-result').css('background-image', '/images/lose.gif');
                                 url = '/waitplayer';
                                 result = 'fail';
                         	}
@@ -207,7 +207,7 @@
                             $('#fight-result').fadeIn();
                             fight_socket.emit('fight over', {token: my_token, result: result});
                             setTimeout(function() {
-                                window.location = url;
+                                //window.location = url;
                             }, 3000);
                         }
                     }                    
