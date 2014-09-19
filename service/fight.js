@@ -80,7 +80,7 @@ module.exports = function() {
 	        var target = data.target;
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
-	   		PLAYERS[operator]['status'] = ACTION.n;
+	   		PLAYERS[operator]['status'] = ACTION.l;
 
 	   		fight_socket.emit('escapeLeft', {
    				'operator': operator,
@@ -93,7 +93,7 @@ module.exports = function() {
 	        var target = data.target;
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
-	   		PLAYERS[operator]['status'] = ACTION.n;
+	   		PLAYERS[operator]['status'] = ACTION.r;
 
 	   		fight_socket.emit('escapeRight', {
    				'operator': operator,
