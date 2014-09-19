@@ -6,7 +6,7 @@ module.exports = function() {
 	var ACTION = {
 		a: "attack",
 		d: "defend",
-		m: "nodefend",
+		n: "nodefend",
 		l: "escapeLeft",
 		r: "escapeRight"
 	};
@@ -54,26 +54,30 @@ module.exports = function() {
 	        var target = data.target;
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
-	   		PLAYERS[operator]['status'] = ACTION.d;
+	   		if(PLAYERS[operator]['status'] != ACTION.d){
+		   		PLAYERS[operator]['status'] = ACTION.d;
 
-	   		fight_socket.emit('defend', {
-   				'operator': operator,
-	   			'target': target
-   			});
-	   		console.log(PLAYERS);
+		   		fight_socket.emit('defend', {
+	   				'operator': operator,
+		   			'target': target
+	   			});
+		   		console.log(PLAYERS);
+	   		}
    		});
    		socket.on('nodefend', function(data){
 	        var operator = data.operator;
 	        var target = data.target;
 	        PLAYERS[operator] = PLAYERS[operator] || {};
 	   		PLAYERS[operator]['target'] = target;
-	   		PLAYERS[operator]['status'] = ACTION.n;
+	   		if(PLAYERS[operator]['status'] != ACTION.n){
+		   		PLAYERS[operator]['status'] = ACTION.n;
 
-	   		fight_socket.emit('nodefend', {
-   				'operator': operator,
-	   			'target': target
-   			});
-	   		console.log(PLAYERS);
+		   		fight_socket.emit('nodefend', {
+	   				'operator': operator,
+		   			'target': target
+	   			});
+		   		console.log(PLAYERS);
+	   		}
    		});
    		socket.on('escapeLeft', function(data){
    			var operator = data.operator;
