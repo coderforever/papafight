@@ -67,7 +67,28 @@
     </style>
   </head>
   <body>
-  	<script>
+ 
+    <a href="#" class="attack">attack</a>
+    <a href="#" class="defense">defense</a>
+    <a href="#" class="left">left</a>
+    <a href="#" class="right">right</a>
+    <a href="#" class="static">static</a>
+    <div class="blood-box-me">
+        <div class="blood-box"></div>
+        <img src="/images/blood-green.png" alt="">
+    </div>
+    <div class="blood-box-rival">
+        <div class="blood-box"></div>
+        <img src="/images/blood-green.png" alt="">
+    </div>
+    <div class="avatar-me">
+        <img src="/images/avatar.png" alt="">
+    </div>
+    <div class="avatar-rival">
+        <img src="/images/avatar.png" alt="">
+    </div>
+    <div id="gamer-container"></div>
+   <script>
     var PPKD = function($, Hilo){
         var app = {
             container: $('#gamer-container'),
@@ -77,7 +98,6 @@
                 frameWidth: 430,
                 frameHeight: 610,
                 numFrames: 30,
-                img: '/images/rival.png',
                 blood: 100,
                 sprites: {
                     static: {from: 0, to: 9},
@@ -91,7 +111,6 @@
                 frameWidth: 900,
                 frameHeight: 1080,
                 numFrames: 30,
-                img: '/images/me.png',
                 blood: 100,
                 sprites: {
                     static: {from: 0, to: 9},
@@ -99,7 +118,7 @@
                     defense: {from: 23, to: 26}
                 }
             },
-            init: function(){
+            init: function(obj){
                 var self = this;
                 // 舞台容器初始化
                 self.container.height($(window).height());
@@ -108,14 +127,17 @@
                 self.stage = self.createStage();
                 self.ticker = self.createTicker(15);
 
+
                 // 加入角色
                 var rival = self.rival;
+                rival.img = obj.rival.img;
                 rival.coordX = (self.width-rival.frameWidth)/2;
                 rival.coordY = 0;
                 rival.textureAtlas = self.createTextureAtlas(rival);
                 rival.sprite = self.createSprite(rival);
 
                 var me = self.me;
+                me.img = obj.me.img;
                 me.coordX = (self.width-me.frameWidth)/2;
                 me.coordY = -200;
                 me.textureAtlas = self.createTextureAtlas(me);
@@ -126,22 +148,34 @@
 
 
                 //暴露函数
-                return function out(role, state, blood){
-                    var player;
-                    if (role === 'rival')
-                        player = self.rival;
-                    if (role === 'me')
-                        player = self.me;
+                return {
 
-                    player.blood = 100 - blood;
-                    var sprite = player.sprite;
-                    switch(state){
-                        case 'attack': sprite.goto(player.sprites.attack.from);break;
-                        case 'defense': sprite.goto(player.sprites.defense.from);break;
-                        case 'static': sprite.goto(player.sprites.static.from);break;
-                        case 'moveLeft': out(role, 'static');self.move(sprite, 'left', function(){self.move(sprite, 'right')});break;
-                        case 'moveRight': out(role, 'static');self.move(sprite, 'right', function(){self.move(sprite, 'left')});break;
-                    }
+                    action: function out(role, state){
+                            var player;
+                            if (role === 'rival')
+                                player = self.rival;
+                            if (role === 'me')
+                                player = self.me;
+
+                            var sprite = player.sprite;
+                            switch(state){
+                                case 'attack': sprite.goto(player.sprites.attack.from);break;
+                                case 'defense': sprite.goto(player.sprites.defense.from);break;
+                                case 'static': sprite.goto(player.sprites.static.from);break;
+                                case 'moveLeft': out(role, 'static');self.move(sprite, 'left', function(){self.move(sprite, 'right')});break;
+                                case 'moveRight': out(role, 'static');self.move(sprite, 'right', function(){self.move(sprite, 'left')});break;
+                            }
+                    },
+
+                    updateBlood: function(role, blood){
+                        var player;
+                        if (role === 'rival')
+                            player = self.rival;
+                        if (role === 'me')
+                            player = self.me;
+                        player.blood = 100 - blood;
+                    }                    
+
                 }
             },
             updateBlood: function(){
@@ -156,10 +190,10 @@
 
                 window.setTimeout(function(){
                     if (rivalB < 30){
-                        rival.attr('src', '/images/blood-red.png');
+                        rival.attr('src', 'blood-red.png');
                     }
                     if (meB < 30){
-                        me.attr('src', '/images/blood-red.png');
+                        me.attr('src', 'blood-red.png');
                     }                    
                 }, 200)
 
@@ -252,47 +286,39 @@
 
             }
         };
-        return app.init();
+        return app;
     }(jQuery, Hilo);
 
+console.log(PPKD)
+        var PPKD = PPKD.init({
+            rival:{
+                img: './rival.png'
+            },
+            me : {
+                img: './me.png'
+            } 
+        })
+ console.log(PPKD)  
 
         jQuery('.defense').click(function(){
-            PPKD('rival', 'attack', 50);
-            PPKD('me', 'defense', 60)
+            PPKD.action('rival', 'attack');
+            PPKD.action('me', 'defense')
         });
         jQuery('.attack').click(function(){
-            PPKD('rival', 'attack', 50)
-            PPKD('me', 'defense', 80)
-        });
+            PPKD.action('rival', 'defense')
+            PPKD.action('me', 'attack')
+            PPKD.updateBlood('me', 20)
+        })
         jQuery('.static').click(function(){
-            PPKD('rival', 'static')
-        });
+            PPKD.action('rival', 'static')
+        })
         jQuery('.left').click(function(){
-            PPKD('rival', 'moveLeft');
-        });
+            PPKD.action('rival', 'moveLeft');
+        })
         jQuery('.right').click(function(){
-            PPKD('rival', 'moveRight');
-        });
+            PPKD.action('rival', 'moveRight');
+        })
+
     </script>
-    <a href="#" class="attack">attack</a>
-    <a href="#" class="defense">defense</a>
-    <a href="#" class="left">left</a>
-    <a href="#" class="right">right</a>
-    <a href="#" class="static">static</a>
-    <div class="blood-box-me">
-        <div class="blood-box"></div>
-        <img src="/images/blood-green.png" alt="">
-    </div>
-    <div class="blood-box-rival">
-        <div class="blood-box"></div>
-        <img src="/images/blood-green.png" alt="">
-    </div>
-    <div class="avatar-me">
-        <img src="/images/avatar.png" alt="">
-    </div>
-    <div class="avatar-rival">
-        <img src="/images/avatar.png" alt="">
-    </div>
-    <div id="gamer-container"></div>
   </body>
 </html>
