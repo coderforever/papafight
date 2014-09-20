@@ -81,7 +81,7 @@
         display: none;
         background-position: center center;
         background-repeat: no-repeat;
-        background-color: #fff;
+        background-color: #2a1f35;
         opacity: .75;
     }
     #fight-hit{
@@ -162,14 +162,14 @@
                 var rival = self.rival;
                 rival.img = obj.rival.img;
                 rival.coordX = (self.width-rival.frameWidth)/2;
-                rival.coordY = 50;
+                rival.coordY = 80;
                 rival.textureAtlas = self.createTextureAtlas(rival);
                 rival.sprite = self.createSprite(rival);
 
                 var me = self.me;
                 me.img = obj.me.img;
                 me.coordX = (self.width-me.frameWidth)/2;
-                me.coordY = -140;
+                me.coordY = -120;
                 me.textureAtlas = self.createTextureAtlas(me);
                 me.sprite = self.createSprite(me);
 

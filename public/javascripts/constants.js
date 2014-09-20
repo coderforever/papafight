@@ -38,6 +38,11 @@ RESOURCE.IMAGES=[
 	"/images/rival3.png",
 	"/images/rival4.png",
 	"/images/rival5.png",
+	"/images/avatar1.png",
+	"/images/avatar2.png",
+	"/images/avatar3.png",
+	"/images/avatar4.png",
+	"/images/avatar5.png",
 	"/images/win.gif",
 	"/images/fight_bk.jpg"
 ];
