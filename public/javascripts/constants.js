@@ -44,7 +44,8 @@ RESOURCE.IMAGES=[
 	"/images/avatar4.png",
 	"/images/avatar5.png",
 	"/images/win.gif",
-	"/images/fight_bk.jpg"
+	"/images/fight_bk.jpg",
+	"/images/wait_bk.gif"
 ];
 RESOURCE.AUDIOS=[
 	"/audios/bomb.wav",

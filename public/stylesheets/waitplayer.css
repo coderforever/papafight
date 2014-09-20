@@ -1,12 +1,18 @@
 @import url(reset.css);
-body.wait-wrapper{
-	background: #191215  url('../images/bg.jpg') center center no-repeat;
-	width: 1000px;
-	margin: 0px auto;
+body {
+	width: 1920px;
+	height: 1080px;
+	background: #191215  url('../images/wait_bk.gif') center center no-repeat;
+	overflow: hidden;
+}
+.wait-wrapper{
+	width: 1200px;
+	margin: 0 auto;
+	padding-top: 240px;
 }
 .wait-wrapper .player-one{
-	width: 300px;
-	height: 400px;
+	width: 400px;
+	height: 550px;
 	float: left;
 }
 .wait-wrapper .vs{
@@ -29,13 +35,13 @@ body.wait-wrapper{
 }
 .wait-wrapper .player-one img,
 .wait-wrapper .player-wait img{
-	width: 300px;
-	height: 400px;
+	width: 400px;
+	height: 550px;
 	box-shadow: 0 0 50px #fff;
 }
 .wait-wrapper .player-wait{
-	width: 300px;
-	height: 400px;
+	width: 400px;
+	height: 550px;
 	float: right;
 }
 
