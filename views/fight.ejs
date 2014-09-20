@@ -15,7 +15,10 @@
     html, body{
         width: 100%;
         height: 100%;
-        background: #000;
+        background: #000 url("/images/fight_bk.jpg") no-repeat center center;
+        overflow:hidden;
+        padding:0px;
+        margin:0px;
     }
     #game-container{
         position: relative;
@@ -159,7 +162,7 @@
                 var rival = self.rival;
                 rival.img = obj.rival.img;
                 rival.coordX = (self.width-rival.frameWidth)/2;
-                rival.coordY = 0;
+                rival.coordY = 50;
                 rival.textureAtlas = self.createTextureAtlas(rival);
                 rival.sprite = self.createSprite(rival);
 

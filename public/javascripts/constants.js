@@ -27,12 +27,19 @@ RESOURCE.IMAGES=[
 	"/images/capture.png",
 	"/images/hit.png",
 	"/images/lose.gif",
+	"/images/me1.png",
 	"/images/me2.png",
 	"/images/me3.png",
+	"/images/me4.png",
+	"/images/me5.png",
 	"/images/ok.png",
+	"/images/rival1.png",
 	"/images/rival2.png",
 	"/images/rival3.png",
-	"/images/win.gif"
+	"/images/rival4.png",
+	"/images/rival5.png",
+	"/images/win.gif",
+	"/images/fight_bk.jpg"
 ];
 RESOURCE.AUDIOS=[
 	"/audios/bomb.wav",
