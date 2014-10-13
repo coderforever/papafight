@@ -3,7 +3,7 @@ Utils.checkToken();
 $(function(){
 	Utils.verticalMiddle("body.wait-wrapper");
 	//播放音频
-	Utils.playAudio("/audios/loading.wav",true);
+	var audioBk=Utils.playAudio("/audios/loading.wav",true);
 	//vs闪烁动画
 	setInterval(function(){
 		$("#vs").animate({opacity:0.5},500,function(){
@@ -35,6 +35,11 @@ $(function(){
 		//进入打斗页面
 		setTimeout(function(){
 			document.location.href="/fight";
+			audioBk.pause();
 		},3000);
 	});
+	//玩家断开
+	window.onunload=function(){
+		socket.disconnect();
+	};
 });
