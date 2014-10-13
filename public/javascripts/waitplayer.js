@@ -39,7 +39,7 @@ $(function(){
 		},3000);
 	});
 	//玩家断开
-	window.onunload=function(){
+	window.onbeforeunload=function(){
 		socket.disconnect();
 	};
 });
